@@ -35,6 +35,14 @@ class Creature
     SqlRunner.run(sql, values)
   end
 
+  def fightable 
+    if @fightable == 't'
+      return "Ready for action"
+    elsif @fightable == 'f'
+      return "Not ready yet"
+    end
+  end
+
   def self.all
     sql = "SELECT * FROM creatures;"
     values = nil
