@@ -9,3 +9,13 @@
   </article>
   <% end %>
 </section>
+
+<h2>Resident Fighters</h2>
+<section>
+ <% @fighters.each do |fighter| %>
+  <article>
+    <p>Name: <%=fighter.name%></p>
+    <hr/>
+  </article>
+  <% end %>
+</section>

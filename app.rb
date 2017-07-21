@@ -6,7 +6,8 @@ require_relative( './models/fighter.rb' )
 also_reload( './models/*.rb') if development?
 
 
-get '/creatures' do
+get '/' do
   @creatures = Creature.all
+  @fighters = Fighter.all
   erb(:index)
 end
