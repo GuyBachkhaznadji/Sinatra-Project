@@ -5,8 +5,8 @@ CREATE TABLE creatures(
 id SERIAL4 PRIMARY KEY,
 name VARCHAR(255),
 caputure_date DATE,
-fightable BOOLEAN,
-fighter_id INT4 REFERENCES fighters(id)
+fightable BOOLEAN
+-- fighter_id INT4 REFERENCES fighters(id)
 );
 
 CREATE TABLE fighters(

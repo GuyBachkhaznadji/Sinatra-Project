@@ -9,16 +9,16 @@ class Creature
     @name = details['name']
     @caputure_date = details['caputure_date']
     @fightable = details['fightable']
-    @fighter_id = details['fighter_id']
+    # @fighter_id = details['fighter_id']
   end
 
   def save
     sql = "INSERT INTO creatures
-    (name, caputure_date, fightable, fighter_id)
+    (name, caputure_date, fightable)
     VALUES 
-    ($1, $2, $3, $4)
+    ($1, $2, $3)
     RETURNING id;"
-    values = [@name, @caputure_date, @fightable, @fighter_id]
+    values = [@name, @caputure_date, @fightable]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
