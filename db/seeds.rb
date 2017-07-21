@@ -15,7 +15,3 @@ creature1.save
 
 creature1 = Creature.new({'name' => "Smaug, The Terrible", 'capture_date' => "15/10/0500", 'fightable' => 'f', 'fighter_id' => fighter2.id})
 creature1.save
-
-creature1.name = 'hello'
-creature1.update
-p creature1
