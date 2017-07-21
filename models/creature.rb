@@ -6,14 +6,11 @@ class Creature
   attr_reader(:id, :name, :caputure_date, :fightable)
 
   def initialize(details)
-    @id = details['id'].to_i 
+    true_false = {'t' => true, 'f' => false}
+    @id = details['id'].to_i
     @name = details['name']
     @caputure_date = details['caputure_date']
-    if details['fightable'] == 't'
-      @fightable = true
-    elsif details['fightable'] == 'f'
-      @fightable = false
-    end
+    @fightable = true_false[details['fightable']]
     @fighter_id = details['fighter_id']
   end
 
@@ -42,7 +39,7 @@ class Creature
   def fight_ready 
     if @fightable
       return "Ready for action"
-    else
+    elsif @fightable == false
       return "Not ready yet"
     end
   end

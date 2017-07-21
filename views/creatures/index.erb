@@ -1,0 +1,11 @@
+<h2>Resident Creatures</h2>
+<section>
+ <% @creatures.each do |creature| %>
+  <article>
+    <p>Name: <%=creature.name%></p>
+    <p>Date of Capture: <%=creature.caputure_date%></p>
+    <p>Fightable: <%=creature.fight_ready%></p>
+    <hr/>
+  </article>
+  <% end %>
+</section>
