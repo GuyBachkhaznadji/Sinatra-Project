@@ -2,7 +2,8 @@ require_relative('../db/sql_runner.rb')
 
 class Creature
 
-  attr_reader(:id, :name, :caputure_date, :fightable, :fighter_id)
+  attr_accessor(:fighter_id)
+  attr_reader(:id, :name, :caputure_date, :fightable)
 
   def initialize(details)
     @id = details['id'].to_i
@@ -20,6 +21,18 @@ class Creature
     RETURNING id;"
     values = [@name, @caputure_date, @fightable, @fighter_id]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
+  end
+
+  def update
+    sql = "UPDATE creatures
+    SET 
+    name = $1, 
+    caputure_date = $2, 
+    fightable = $3, 
+    fighter_id = $4
+    WHERE id = $5;"
+    values = [@name, @caputure_date, @fightable, @fighter_id, @id]
+    SqlRunner.run(sql, values)
   end
 
   def self.all

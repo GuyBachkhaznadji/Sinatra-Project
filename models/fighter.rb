@@ -31,4 +31,5 @@ class Fighter
     return result
   end
 
+
 end
