@@ -2,7 +2,7 @@ require_relative('../db/sql_runner.rb')
 
 class Fighter
 
-  attr_reader(:id, :name)
+  attr_accessor(:name)
 
   def initialize(details)
     @id = details['id'].to_i

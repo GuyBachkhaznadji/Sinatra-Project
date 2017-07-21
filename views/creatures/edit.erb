@@ -1,0 +1,33 @@
+<form method="post" action="/creatures/<%=@id%>">
+  <label for="name-field">Name:</label>
+  <input
+  type="text"
+  name="name"
+  id="name-field"
+  />
+
+  <label for="capture-date-field">Capture Date:</label>
+  <input
+  type="date"
+  name="capture_date"
+  id="capture-date-field"
+  />
+
+  <label for="fightable-field">Fightable:</label>
+  <input
+  type="boolean"
+  name="fightable"
+  id="fightable-field"
+  />
+
+<!-- This is the drop down menu. Value is they hash value and name is the hash key -->
+  <label for="fighter-selection">Fighter:</label>
+  <select name="fighter_id" id="fighter-selection">
+    <option value="nil">None</option>
+    <% @fighters.each do |fighter| %>
+    <option value="<%=fighter.id%>"><%=fighter.name%></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Update Creature">
+</form>

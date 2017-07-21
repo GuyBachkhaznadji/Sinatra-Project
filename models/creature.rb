@@ -2,14 +2,14 @@ require_relative('../db/sql_runner.rb')
 
 class Creature
 
-  attr_accessor(:fighter_id)
-  attr_reader(:id, :name, :caputure_date, :fightable)
+  attr_accessor(:fighter_id, :name, :caputure_date, :fightable)
+  attr_reader(:id)
 
   def initialize(details)
     true_false = {'t' => true, 'f' => false}
     @id = details['id'].to_i
     @name = details['name']
-    @caputure_date = details['caputure_date']
+    @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
     @fighter_id = details['fighter_id']
   end
@@ -57,9 +57,17 @@ class Creature
   end
 
   def self.delete_all
-    sql = 'DELETE FROM creatures'
+    sql = "DELETE FROM creatures"
     values = nil
     SqlRunner.run(sql, values)
+  end
+
+  def self.find(id)
+    sql = "SELECT * FROM creatures
+    WHERE id = $1"
+    values = [id]
+    creature = self.map_items(sql, values)[0]
+    return creature
   end
 
 end
