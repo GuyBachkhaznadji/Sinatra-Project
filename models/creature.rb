@@ -7,7 +7,7 @@ class Creature
   def initialize(details)
     @id = details['id'].to_i
     @name = details['name']
-    @caputure_date = detais['caputure_date']
+    @caputure_date = details['caputure_date']
     @fightable = details['fightable']
     @fighter_id = details['fighter_id']
   end
@@ -19,7 +19,9 @@ class Creature
     ($1, $2, $3, $4)
     RETURNING id;"
     values = [@name, @caputure_date, @fightable, @fighter_id]
-    @id = SqlRunner.run(sql, values)[0].to_i
+    @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
+
+
 
 end
