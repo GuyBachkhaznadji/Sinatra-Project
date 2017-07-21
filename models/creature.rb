@@ -59,4 +59,10 @@ class Creature
     return result
   end
 
+  def self.delete_all
+    sql = 'DELETE FROM creatures'
+    values = nil
+    SqlRunner.run(sql, values)
+  end
+
 end

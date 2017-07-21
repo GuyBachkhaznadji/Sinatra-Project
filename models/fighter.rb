@@ -31,5 +31,10 @@ class Fighter
     return result
   end
 
+  def self.delete_all
+    sql = 'DELETE FROM fighters'
+    values = nil
+    SqlRunner.run(sql, values)
+  end
 
 end
