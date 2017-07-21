@@ -22,6 +22,16 @@ class Creature
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
+  # def self.all
+  #   sql = "SELECT * FROM creatures;"
+  #   values = nil
+  #   SqlRunner.run(sql, values)
+  # end
 
+  def self.map_items(sql, values)
+    creatures_hash = SqlRunner.run(sql, values)
+    result = creatures_hash.map { |creature| Creature.new(creature)}
+    return result
+  end
 
 end
