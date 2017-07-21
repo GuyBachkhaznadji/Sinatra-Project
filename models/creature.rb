@@ -6,10 +6,14 @@ class Creature
   attr_reader(:id, :name, :caputure_date, :fightable)
 
   def initialize(details)
-    @id = details['id'].to_i
+    @id = details['id'].to_i 
     @name = details['name']
     @caputure_date = details['caputure_date']
-    @fightable = details['fightable']
+    if details['fightable'] == 't'
+      @fightable = true
+    elsif details['fightable'] == 'f'
+      @fightable = false
+    end
     @fighter_id = details['fighter_id']
   end
 
@@ -35,10 +39,10 @@ class Creature
     SqlRunner.run(sql, values)
   end
 
-  def fightable 
-    if @fightable == 't'
+  def fight_ready 
+    if @fightable
       return "Ready for action"
-    elsif @fightable == 'f'
+    else
       return "Not ready yet"
     end
   end
