@@ -29,6 +29,13 @@ class Gladiator
     SqlRunner.run(sql, values)
   end
 
+  def delete
+    sql = "DELETE * FROM gladiators
+    WHERE id = $1;"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   def creatures()
     sql = "SELECT * FROM creatures
     WHERE $1 = gladiator_id;"
