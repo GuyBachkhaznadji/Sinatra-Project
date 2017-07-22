@@ -110,4 +110,12 @@ class Creature
     return types.uniq!
   end
 
+  def self.type(type)
+    sql = "SELECT * FROM creatures
+    WHERE type = $1"
+    values = [type]
+    creatures = self.map_items(sql, values)
+    return creatures
+  end
+
 end

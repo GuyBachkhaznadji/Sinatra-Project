@@ -77,6 +77,6 @@ post '/creatures/:id/destroy' do
 end
 
 
-post '/creatures/type/:type' do
-  erb(:"creatures/types")
+post '/creatures/type' do
+  erb(:"creatures/type")
 end
