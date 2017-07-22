@@ -11,6 +11,16 @@ get '/creatures' do
   erb(:"creatures/index")
 end
 
+get '/creatures/ready' do
+  @creatures = Creature.all  
+  erb(:"creatures/ready")
+end
+
+get '/creatures/not-ready' do
+  @creatures = Creature.all
+  erb(:"creatures/not_ready")
+end
+
 #NEW
 get '/creatures/new' do
   @gladiators = Gladiator.all
