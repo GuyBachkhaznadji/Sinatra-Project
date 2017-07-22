@@ -7,7 +7,7 @@ class Creature
 
   def initialize(details)
     true_false = {'t' => true, 'f' => false}
-    @id = details['id'].to_i
+    @id = details['id'].to_i if details['id'].to_i
     @name = details['name']
     @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
@@ -16,11 +16,11 @@ class Creature
 
   def save()
     sql = "INSERT INTO creatures
-    (name, capture_date, fightable, gladiator_id)
+    (name, capture_date, fightable)
     VALUES 
-    ($1, $2, $3, $4 )
+    ($1, $2, $3)
     RETURNING id;"
-    values = [@name, @capture_date, @fightable, @gladiator_id]
+    values = [@name, @capture_date, @fightable]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 

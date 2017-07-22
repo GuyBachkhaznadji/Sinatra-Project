@@ -13,6 +13,7 @@ end
 
 #NEW
 get '/creatures/new' do
+  @gladiators = Gladiator.all
   erb(:"creatures/new")
 end
 
