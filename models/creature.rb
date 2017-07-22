@@ -14,7 +14,7 @@ class Creature
     @fighter_id = details['fighter_id']
   end
 
-  def save
+  def save()
     sql = "INSERT INTO creatures
     (name, caputure_date, fightable, fighter_id)
     VALUES 
@@ -24,7 +24,7 @@ class Creature
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
-  def update
+  def update()
     sql = "UPDATE creatures
     SET 
     name = $1, 
@@ -36,7 +36,7 @@ class Creature
     SqlRunner.run(sql, values)
   end
 
-  def fight_ready 
+  def fight_ready()
     if @fightable
       return "Ready for action"
     elsif @fightable == false
@@ -44,7 +44,27 @@ class Creature
     end
   end
 
-  def self.all
+  def fighters()
+    sql = "SELECT * FROM fighters
+    WHERE $1 = fighters.id;"
+    values = [@fighter_id]
+    if @fighter_id != nil
+      return Fighter.map_items(sql, values)
+    end
+  end
+
+  def fighter_names
+    fighters = self.fighters
+    if fighters != nil
+      names = nil
+      fighters.each { |fighter| names = "#{fighter.name}"}
+      return names
+    else
+      return "Not fighting anyone"
+    end
+  end
+
+  def self.all()
     sql = "SELECT * FROM creatures;"
     values = nil
     self.map_items(sql, values)
@@ -56,7 +76,7 @@ class Creature
     return result
   end
 
-  def self.delete_all
+  def self.delete_all()
     sql = "DELETE FROM creatures"
     values = nil
     SqlRunner.run(sql, values)

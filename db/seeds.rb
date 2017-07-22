@@ -13,5 +13,11 @@ fighter2.save
 creature1 = Creature.new({'name' => "Nembit, The Firestarter", 'capture_date' => "5/5/0100", 'fightable' => 't', 'fighter_id' => fighter1.id})
 creature1.save
 
-creature1 = Creature.new({'name' => "Smaug, The Terrible", 'capture_date' => "15/10/0500", 'fightable' => 'f', 'fighter_id' => fighter2.id})
-creature1.save
+creature2 = Creature.new({'name' => "Smaug, The Terrible", 'capture_date' => "15/10/0500", 'fightable' => 'f', 'fighter_id' => fighter2.id})
+creature2.save
+
+creature3 = Creature.new({'name' => "Leo, The Loud", 'capture_date' => "15/10/0235", 'fightable' => 'f'})
+creature3.save
+
+
+creature3.fighter_names

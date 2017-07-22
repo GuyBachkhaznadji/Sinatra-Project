@@ -10,7 +10,7 @@ class Fighter
     @name = details['name']
   end
 
-  def save
+  def save()
     sql = "INSERT INTO fighters
     (name)
     VALUES 
@@ -20,7 +20,7 @@ class Fighter
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
-  def self.all
+  def self.all()
     sql = "SELECT * FROM fighters;"
     values = nil
     self.map_items(sql, values)
@@ -32,7 +32,7 @@ class Fighter
     return result
   end
 
-  def self.delete_all
+  def self.delete_all()
     sql = 'DELETE FROM fighters'
     values = nil
     SqlRunner.run(sql, values)
