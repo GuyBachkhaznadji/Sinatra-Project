@@ -77,6 +77,8 @@ post '/creatures/:id/destroy' do
 end
 
 
-post '/creatures/type' do
-  erb(:"creatures/type")
+get '/creatures/filter' do
+  @type = params['type']
+  @creatures = Creature.type(@type)
+  erb(:"creatures/filter")
 end
