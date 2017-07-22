@@ -104,4 +104,10 @@ class Creature
     return creature
   end
 
+  def self.types
+    creatures = self.all
+    types = creatures.map { |creature| creature.type}
+    return types.uniq!
+  end
+
 end
