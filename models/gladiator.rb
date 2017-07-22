@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner.rb')
 
-class Fighter
+class Gladiator
 
   attr_accessor(:name)
   attr_reader(:id)
@@ -11,7 +11,7 @@ class Fighter
   end
 
   def save()
-    sql = "INSERT INTO fighters
+    sql = "INSERT INTO gladiators
     (name)
     VALUES 
     ($1)
@@ -20,20 +20,27 @@ class Fighter
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
+  def creatures()
+    sql = "SELECT * FROM creatures
+    WHERE $1 = gladiator_id;"
+    values = [@id]
+    return Creature.map_items(sql, values)
+  end
+
   def self.all()
-    sql = "SELECT * FROM fighters;"
+    sql = "SELECT * FROM gladiators;"
     values = nil
     self.map_items(sql, values)
   end
 
   def self.map_items(sql, values)
-    fighters_hash = SqlRunner.run(sql, values)
-    result = fighters_hash.map { |fighter| Fighter.new(fighter)}
+    gladiators_hash = SqlRunner.run(sql, values)
+    result = gladiators_hash.map { |gladiator| Gladiator.new(gladiator)}
     return result
   end
 
   def self.delete_all()
-    sql = 'DELETE FROM fighters'
+    sql = 'DELETE FROM gladiators'
     values = nil
     SqlRunner.run(sql, values)
   end

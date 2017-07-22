@@ -21,11 +21,11 @@
   />
 
 <!-- This is the drop down menu. Value is they hash value and name is the hash key -->
-  <label for="fighter-selection">Fighter:</label>
-  <select name="fighter_id" id="fighter-selection">
+  <label for="gladiator-selection">Gladiator:</label>
+  <select name="gladiator_id" id="gladiator-selection">
     <option value="nil">None</option>
-    <% @fighters.each do |fighter| %>
-    <option value="<%=fighter.id%>"><%=fighter.name%></option>
+    <% @gladiators.each do |gladiator| %>
+    <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
     <% end %>
   </select>
 

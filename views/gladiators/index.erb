@@ -1,0 +1,13 @@
+<h2>Resident Gladiators</h2>
+<section>
+ <% @gladiators.each do |gladiator| %>
+  <article>
+    <p>Gladiator: <%=gladiator.name%></p>
+    <h3>Fighting:</h3>
+      <% gladiator.creatures.each do |creature| %>
+      <p><%=creature.name%></p>
+      <% end %>
+    <hr/>
+  </article>
+  <% end %>
+</section>

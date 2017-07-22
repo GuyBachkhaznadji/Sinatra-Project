@@ -1,16 +1,24 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/creature.rb' )
-require_relative( '../models/fighter.rb' )
+require_relative( '../models/gladiator.rb' )
 
 also_reload( '../models/*.rb') if development?
 
-get '/fighters' do
-  @fighters = Fighter.all
-  erb(:"fighters/index")
+get '/gladiators' do
+  @gladiators = Gladiator.all
+  erb(:"gladiators/index")
 end
 
+get '/gladiators/new' do
+  erb(:"gladiators/new")
+end
 
+post '/gladiators' do
+  gladiator1 = Gladiator.new(params)
+  gladiator1.save
+  redirect '/gladiators'
+end
 
 # get '/fighter/new' do
 #   @creatures = Creature.all

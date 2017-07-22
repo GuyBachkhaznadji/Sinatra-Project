@@ -1,7 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/creature.rb' )
-require_relative( '../models/fighter.rb' )
+require_relative( '../models/gladiator.rb' )
 
 also_reload( '../models/*.rb') if development?
 
@@ -14,7 +14,7 @@ end
 #EDIT
 get '/creatures/:id/edit' do
   @id = params['id']
-  @fighters = Fighter.all
+  @gladiators = Gladiator.all
   erb(:"creatures/edit")
 end
 

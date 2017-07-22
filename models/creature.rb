@@ -2,7 +2,7 @@ require_relative('../db/sql_runner.rb')
 
 class Creature
 
-  attr_accessor(:fighter_id, :name, :caputure_date, :fightable)
+  attr_accessor(:gladiator_id, :name, :capture_date, :fightable)
   attr_reader(:id)
 
   def initialize(details)
@@ -11,16 +11,16 @@ class Creature
     @name = details['name']
     @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
-    @fighter_id = details['fighter_id']
+    @gladiator_id = details['gladiator_id']
   end
 
   def save()
     sql = "INSERT INTO creatures
-    (name, caputure_date, fightable, fighter_id)
+    (name, capture_date, fightable, gladiator_id)
     VALUES 
     ($1, $2, $3, $4 )
     RETURNING id;"
-    values = [@name, @caputure_date, @fightable, @fighter_id]
+    values = [@name, @capture_date, @fightable, @gladiator_id]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -28,11 +28,11 @@ class Creature
     sql = "UPDATE creatures
     SET 
     name = $1, 
-    caputure_date = $2, 
+    capture_date = $2, 
     fightable = $3, 
-    fighter_id = $4
+    gladiator_id = $4
     WHERE id = $5;"
-    values = [@name, @caputure_date, @fightable, @fighter_id, @id]
+    values = [@name, @capture_date, @fightable, @gladiator_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -44,20 +44,20 @@ class Creature
     end
   end
 
-  def fighters()
-    sql = "SELECT * FROM fighters
-    WHERE $1 = fighters.id;"
-    values = [@fighter_id]
-    if @fighter_id != nil
-      return Fighter.map_items(sql, values)
+  def gladiators()
+    sql = "SELECT * FROM gladiators
+    WHERE $1 = gladiators.id;"
+    values = [@gladiator_id]
+    if @gladiator_id != nil
+      return Gladiator.map_items(sql, values)
     end
   end
 
-  def fighter_names
-    fighters = self.fighters
-    if fighters != nil
+  def gladiator_names
+    gladiators = self.gladiators
+    if gladiators != nil
       names = nil
-      fighters.each { |fighter| names = "#{fighter.name}"}
+      gladiators.each { |gladiator| names = "#{gladiator.name}"}
       return names
     else
       return "Not fighting anyone"
