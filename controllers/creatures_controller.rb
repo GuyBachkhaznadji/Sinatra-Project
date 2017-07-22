@@ -8,6 +8,7 @@ also_reload( '../models/*.rb') if development?
 #INDEX / SHOW ALL
 get '/creatures' do
   @creatures = Creature.all
+  @types = Creature.types 
   erb(:"creatures/index")
 end
 
@@ -73,4 +74,9 @@ post '/creatures/:id/destroy' do
   creature = Creature.find(params['id'])
   creature.delete
   redirect '/creatures'
+end
+
+
+post '/creatures/type/:type' do
+  erb(:"creatures/types")
 end

@@ -12,3 +12,19 @@
   </article>
   <% end %>
 </section>
+
+
+
+<form method="post" action="/creatures/type/<%=input%>">
+  
+  <label for="creature-type-field">Creature Types:</label>
+  <% @types.each do |type| %>
+  <input
+  type="radio"
+  name="fightable"
+  id="creature-type-field"
+  value="<%=type%>"
+  /><%=type%>
+  <% end %>
+  <input type="submit" name="input" value="Filter">
+</form>
