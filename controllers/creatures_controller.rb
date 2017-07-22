@@ -41,14 +41,14 @@ get '/creatures/:id/edit' do
   erb(:"creatures/edit")
 end
 
-#EDIT
+#EDIT READY CREATURES
 get '/creatures/ready/:id/edit' do
   @id = params['id']
   @gladiators = Gladiator.all
   erb(:"creatures/ready_edit")
 end
 
-#EDIT
+#EDIT NON READY CREATURES
 get '/creatures/not-ready/:id/edit' do
   @id = params['id']
   @gladiators = Gladiator.all

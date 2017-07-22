@@ -1,0 +1,30 @@
+<form method="post" action="/creatures/<%=@id%>">
+  <label for="name-field">Name:</label>
+  <input
+  type="text"
+  name="name"
+  id="name-field"
+  />
+
+  <label for="capture-date-field">Capture Date:</label>
+  <input
+  type="date"
+  name="capture_date"
+  id="capture-date-field"
+  />
+
+  <label for="fightable-field">Fightable:</label>
+  <input
+  type="radio"
+  name="fightable"
+  id="fightable-field"
+  value="t"
+  />Ready
+  <input
+    type="radio"
+    name="fightable"
+    id="fightable-field"
+    value="f"
+    />Not Ready
+  <input type="submit" value="Update Creature">
+</form>
