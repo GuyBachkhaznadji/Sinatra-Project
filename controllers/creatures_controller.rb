@@ -41,6 +41,20 @@ get '/creatures/:id/edit' do
   erb(:"creatures/edit")
 end
 
+#EDIT
+get '/creatures/ready/:id/edit' do
+  @id = params['id']
+  @gladiators = Gladiator.all
+  erb(:"creatures/ready_edit")
+end
+
+#EDIT
+get '/creatures/not-ready/:id/edit' do
+  @id = params['id']
+  @gladiators = Gladiator.all
+  erb(:"creatures/not_ready_edit")
+end
+
 #UPDATE
 post '/creatures/:id' do
   creature = Creature.new(params)
