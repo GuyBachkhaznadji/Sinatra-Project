@@ -1,0 +1,14 @@
+<h2>Creatures Not Ready to Fight</h2>
+<section>
+ <% @creatures.each do |creature| %>
+  <% if creature.fightable == false %>
+  <article>
+    <p>id: <%=creature.id%></p>
+    <p>Name: <%=creature.name%></p>
+    <p>Date of Capture: <%=creature.capture_date%></p>
+    <p>Fighting: <%=creature.gladiator_names%></p>
+    <hr/>
+  </article>
+    <% end %>
+  <% end %>
+</section>
