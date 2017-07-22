@@ -11,6 +11,18 @@ get '/creatures' do
   erb(:"creatures/index")
 end
 
+#NEW
+get '/creatures/new' do
+  erb(:"creatures/new")
+end
+
+#CREATE
+post '/creatures' do
+  creature = Creature.new(params)
+  creature.save
+  redirect '/creatures'
+end
+
 #EDIT
 get '/creatures/:id/edit' do
   @id = params['id']

@@ -18,8 +18,8 @@ end
 
 #CREATE
 post '/gladiators' do
-  gladiator1 = Gladiator.new(params)
-  gladiator1.save
+  gladiator = Gladiator.new(params)
+  gladiator.save
   redirect '/gladiators'
 end
 
