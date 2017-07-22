@@ -29,7 +29,7 @@
 <!-- This is the drop down menu. Value is they hash value and name is the hash key -->
   <label for="gladiator-selection">Gladiator:</label>
   <select name="gladiator_id" id="gladiator-selection">
-    <option value="nil">None</option>
+    <option value="0">None</option>
     <% @gladiators.each do |gladiator| %>
     <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
     <% end %>

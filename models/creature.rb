@@ -11,7 +11,7 @@ class Creature
     @name = details['name']
     @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
-    @gladiator_id = details['gladiator_id']
+    @gladiator_id = details['gladiator_id'].to_i
   end
 
   def save()
@@ -25,15 +25,20 @@ class Creature
   end
 
   def update()
-    sql = "UPDATE creatures
+    sql1 = "UPDATE creatures
     SET 
     name = $1, 
     capture_date = $2, 
-    fightable = $3, 
-    gladiator_id = $4
-    WHERE id = $5;"
-    values = [@name, @capture_date, @fightable, @gladiator_id, @id]
-    SqlRunner.run(sql, values)
+    fightable = $3
+    WHERE id = $4;"
+    values1 = [@name, @capture_date, @fightable, @id]
+    SqlRunner.run(sql1, values1)
+    
+    sql2 = "UPDATE creatures
+    SET gladiator_id = $2
+    WHERE id = $1 AND $2 != 0"
+    values2 = [@id, @gladiator_id]
+    SqlRunner.run(sql2, values2)
   end
 
   def delete
