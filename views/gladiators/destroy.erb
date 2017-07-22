@@ -1,9 +1,4 @@
 <form method="post" action="/gladiators/<%=@id%>/destroy">
-  <label for="gladiator-selection">Gladiator:</label>
-  <select name="gladiator_id" id="gladiator-selection">
-    <% @gladiators.each do |gladiator| %>
-    <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
-    <% end %>
-  </select>
+  <label for="confirmation-selection">Are you sure?</label>
   <input type="submit" value="Delete Gladiator">
 </form>

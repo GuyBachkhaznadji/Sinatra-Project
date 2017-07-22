@@ -40,14 +40,13 @@ end
 
 #GET DESTROY
 get '/creatures/:id/destroy' do
-  @creatures = Creature.all
-  @id = params[:id]
+  @id = params['id']
   erb(:"creatures/destroy")
 end
 
 #DESTROY
 post '/creatures/:id/destroy' do
-  creature = Creature.find(params[:id])
+  creature = Creature.find(params['id'])
   creature.delete
   redirect '/creatures'
 end

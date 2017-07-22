@@ -39,8 +39,7 @@ end
 
 #GET DESTROY
 get '/gladiators/:id/destroy' do
-  @gladiators = Gladiator.all
-  @id = params[:id]
+  @id = params['id']
   erb(:"gladiators/destroy")
 end
 
