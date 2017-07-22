@@ -5,7 +5,7 @@ require_relative( '../models/gladiator.rb' )
 
 also_reload( '../models/*.rb') if development?
 
-#SHOW
+#INDEX / SHOW
 get '/creatures' do
   @creatures = Creature.all
   erb(:"creatures/index")

@@ -5,29 +5,35 @@ require_relative( '../models/gladiator.rb' )
 
 also_reload( '../models/*.rb') if development?
 
+#INDEX / SHOW
 get '/gladiators' do
   @gladiators = Gladiator.all
   erb(:"gladiators/index")
 end
 
+#NEW
 get '/gladiators/new' do
   erb(:"gladiators/new")
 end
 
+#CREATE
 post '/gladiators' do
   gladiator1 = Gladiator.new(params)
   gladiator1.save
   redirect '/gladiators'
 end
 
-# get '/fighter/new' do
-#   @creatures = Creature.all
-#   @fighters = Fighter.all
-#   erb(:index)
-# end
+#EDIT
+get '/gladiators/:id/edit' do
+  @id = params['id']
+  @gladiators = Gladiator.all
+  erb(:"gladiators/edit")
+end
 
-# post '/fighter' do
-#   @creatures = Creature.all
-#   @fighters = Fighter.all
-#   erb(:index)
-# end
+#UPDATE
+post '/gladiators/:id' do
+  id = params['id'].to_i
+  gladiator = Gladiator.find(id)
+  gladiator.update
+  redirect '/gladiators'
+end
