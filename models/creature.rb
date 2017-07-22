@@ -36,6 +36,13 @@ class Creature
     SqlRunner.run(sql, values)
   end
 
+  def delete
+    sql = "DELETE FROM creatures
+    WHERE id = $1;"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   def fight_ready()
     if @fightable
       return "Ready for action"
