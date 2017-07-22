@@ -32,8 +32,7 @@ end
 
 #UPDATE
 post '/gladiators/:id' do
-  id = params['id'].to_i
-  gladiator = Gladiator.find(id)
+  gladiator = Gladiator.new(params)
   gladiator.update
   redirect '/gladiators'
 end

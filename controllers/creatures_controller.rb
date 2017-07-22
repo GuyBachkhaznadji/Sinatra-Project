@@ -20,8 +20,7 @@ end
 
 #UPDATE
 post '/creatures/:id' do
-  id = params['id'].to_i
-  creature = Creature.find(id)
+  creature = Creature.new(params)
   creature.update
   redirect '/creatures'
 end

@@ -19,7 +19,7 @@ creature2.save
 creature3 = Creature.new({'name' => "Leo, The Loud", 'capture_date' => "15/10/0235", 'fightable' => 'f'})
 creature3.save
 
-creature4 = Creature.new({'name' => "Ursa, The tall", 'capture_date' => "15/10/0235", 'fightable' => 'f', 'gladiator_id' => gladiator2.id})
+creature4 = Creature.new({'name' => "Ursa, The Tall", 'capture_date' => "15/10/0235", 'fightable' => 'f', 'gladiator_id' => gladiator2.id})
 creature4.save
 
 gladiator3 = Gladiator.new({'name' => "Anthony Digitius"})
