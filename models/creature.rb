@@ -2,13 +2,14 @@ require_relative('../db/sql_runner.rb')
 
 class Creature
 
-  attr_accessor(:gladiator_id, :name, :capture_date, :fightable)
+  attr_accessor(:gladiator_id, :name, :capture_date, :fightable, :type)
   attr_reader(:id)
 
   def initialize(details)
     true_false = {'t' => true, 'f' => false}
     @id = details['id'].to_i if details['id'].to_i
     @name = details['name']
+    @type = details['type']
     @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
     @gladiator_id = details['gladiator_id'].to_i
@@ -16,11 +17,11 @@ class Creature
 
   def save()
     sql = "INSERT INTO creatures
-    (name, capture_date, fightable)
+    (name, capture_date, fightable, type)
     VALUES 
-    ($1, $2, $3)
+    ($1, $2, $3, $4)
     RETURNING id;"
-    values = [@name, @capture_date, @fightable]
+    values = [@name, @capture_date, @fightable, @type]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -29,9 +30,10 @@ class Creature
     SET 
     name = $1, 
     capture_date = $2, 
-    fightable = $3
-    WHERE id = $4;"
-    values1 = [@name, @capture_date, @fightable, @id]
+    fightable = $3,
+    type = $4
+    WHERE id = $5;"
+    values1 = [@name, @capture_date, @fightable, @type, @id]
     SqlRunner.run(sql1, values1)
     
     sql2 = "UPDATE creatures
@@ -41,7 +43,7 @@ class Creature
     SqlRunner.run(sql2, values2)
   end
 
-  def delete
+  def delete()
     sql = "DELETE FROM creatures
     WHERE id = $1;"
     values = [@id]
@@ -65,7 +67,7 @@ class Creature
     end
   end
 
-  def gladiator_names
+  def gladiator_names()
     gladiators = self.gladiators
     if gladiators != nil
       names = nil
