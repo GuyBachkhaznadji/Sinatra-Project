@@ -488,15 +488,28 @@ a:visited {
   padding: 15px;
 }
 
-h2 {
+h1 {
   margin: 15px;
   border: 15px;
   padding: 15px;
 }
 
+h2 {
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+  background-color: black;
+}
+
 h3 {
   /*font-size: 1m;*/
 }
+
+/*p {
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+}*/
 
 #title-bar {
   display: flex;
@@ -534,12 +547,21 @@ nav {
   align-items: flex-start;
 }
 
+.lower-title {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .creatures {
   display: flex;
   font-size: 1em;
   flex-flow: row wrap;
   align-content: center;
-  justify-content: space-between;
+  justify-content: space-around;
+/*  align-items: center;*/
+  margin: 20px;
+  border: 20px;
+  padding: 20px;
 }
 
 .gladiators {
@@ -548,15 +570,18 @@ nav {
   flex-flow: row wrap;
   align-content: center;
   justify-content: space-between;
+  margin: 20px;
+  border: 20px;
+  padding: 20px;
 }
 
 
 .profile {
   flex: 1;
   min-width: 200px;
-  margin: 15px;
-  border: 15px;
-  padding: 15px;
+  margin: 20px;
+  border: 20px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -585,4 +610,16 @@ nav {
 
 .bear {
   background-color: #723500;
+}
+
+.radio {
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+}
+
+input {
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
 }
