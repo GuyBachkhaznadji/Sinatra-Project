@@ -1,41 +1,50 @@
-<form method="post" action="/creatures/<%=@id%>">
-  <label for="name-field">Name:</label>
-  <input
-  type="text"
-  name="name"
-  id="name-field"
-  value="<%=@creature.name%>"
-  />
+<section class="form-area">
+  <form class="form" method="post" action="/creatures/<%=@id%>">
+    <label for="name-field">Name:</label>
+    <input
+    type="text"
+    name="name"
+    id="name-field"
+    value="<%=@creature.name%>"
+    />
 
-  <label for="capture-date-field">Capture Date:</label>
-  <input
-  type="date"
-  name="capture_date"
-  id="capture-date-field"
-  value="<%=@creature.capture_date%>"
-  />
+    <label for="capture-date-field">Capture Date:</label>
+    <input
+    type="date"
+    name="capture_date"
+    id="capture-date-field"
+    value="<%=@creature.capture_date%>"
+    />
 
-  <label for="fightable-field">Fightable:</label>
-  <input
-  type="radio"
-  name="fightable"
-  id="fightable-field"
-  value="t"
-  />Ready
-  <input
-    type="radio"
-    name="fightable"
-    id="fightable-field"
-    value="f"
-    />Not Ready
-<!-- This is the drop down menu. Value is they hash value and name is the hash key -->
-  <label for="gladiator-selection">Gladiator:</label>
-  <select name="gladiator_id" id="gladiator-selection">
-    <option value="0">None</option>
-    <% @gladiators.each do |gladiator| %>
-    <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
-    <% end %>
-  </select>
+    <ul>
+      <label for="fightable-field">Ready to Fight?</label>
+      <li>Ready
+        <input
+        type="radio"
+        name="fightable"
+        id="fightable-field"
+        value="t"
+        />
+      </li>
+      <li>Not Ready
+        <input
+          type="radio"
+          name="fightable"
+          id="fightable-field"
+          value="f"
+          />
+        </li>
+      </ul>
+    <label for="gladiator-selection">Gladiator: </label>
+    <select name="gladiator_id" id="gladiator-selection">
+      <option value="0">None</option>
+      <% @gladiators.each do |gladiator| %>
+      <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
+      <% end %>
+    </select>
 
-  <input type="submit" value="Update Creature">
-</form>
+    <input class="button" type="submit" value="Update Creature">
+  </form>
+  <article class="filler">
+  </article>
+</section>
