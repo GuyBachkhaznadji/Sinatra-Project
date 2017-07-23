@@ -467,6 +467,14 @@ body {
   background-attachment: fixed;
   background-position: center; 
   background-size: cover;
+  font-family: 'Cinzel', serif;
+}
+
+h2 {
+  color: white;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
 }
 
 h3 {
@@ -481,6 +489,9 @@ h3 {
   justify-content: space-around;
   top: 0; 
   width: 100%;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
 }
 
 #title-photo {
