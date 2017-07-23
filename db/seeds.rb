@@ -12,15 +12,19 @@ gladiator2.save
 
 creature1 = Creature.new({'name' => "Nembit, The Firestarter", 'type' => "Dragon", 'capture_date' => "5/5/0100", 'fightable' => 't', 'gladiator_id' => gladiator1.id})
 creature1.save
+creature1.update
 
 creature2 = Creature.new({'name' => "Smaug, The Terrible", 'type' => "Dragon", 'capture_date' => "15/10/0500", 'fightable' => 'f', 'gladiator_id' => gladiator2.id})
 creature2.save
+creature2.update
 
-creature3 = Creature.new({'name' => "Leo, The Loud", 'type' => "Lion", 'capture_date' => "15/10/0235", 'fightable' => 'f'})
+creature3 = Creature.new({'name' => "Leo, The Loud", 'type' => "Lion", 'capture_date' => "15/10/0235", 'fightable' => 'f', 'gladiator_id' => '0'})
 creature3.save
+creature3.update
 
 creature4 = Creature.new({'name' => "Ursa, The Tall",'type' => "Bear", 'capture_date' => "15/10/0235", 'fightable' => 'f', 'gladiator_id' => gladiator2.id})
 creature4.save
+creature4.update
 
 gladiator3 = Gladiator.new({'name' => "Anthony Digitius"})
 gladiator3.save

@@ -13,16 +13,14 @@
   <input type="submit" value="Filter">
 </form>
 
-<section>
+<section class="creatures">
  <% @creatures.each do |creature| %>
-  <article>
-    <p>id: <%=creature.id%></p>
+  <article class="profile <%=creature.type.downcase%>">
     <p>Name: <%=creature.name%></p>
     <p>Type: <%=creature.type%></p>
     <p>Date of Capture: <%=creature.capture_date%></p>
     <p>Fightable: <%=creature.fight_ready%></p>
     <p>Fighting: <%=creature.gladiator_names%></p>
-    <hr/>
   </article>
   <% end %>
 </section>

@@ -1,0 +1,20 @@
+body {
+  background-color: #FFC44A;
+}
+
+.creatures {
+  display: flex;
+  font-size: 1em;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.profile {
+  flex: 1;
+  min-width: 200px;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+  text-align: center;
+}

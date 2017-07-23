@@ -62,7 +62,7 @@ class Creature
     sql = "SELECT * FROM gladiators
     WHERE $1 = gladiators.id;"
     values = [@gladiator_id]
-    if @gladiator_id != nil
+    if @gladiator_id != nil || @gladiator_id != 0
       return Gladiator.map_items(sql, values)
     end
   end
@@ -70,7 +70,7 @@ class Creature
   def gladiator_names()
     gladiators = self.gladiators
     if gladiators != nil
-      names = nil
+      names = 'Not fighting anyone'
       gladiators.each { |gladiator| names = "#{gladiator.name}"}
       return names
     else
