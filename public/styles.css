@@ -1,5 +1,10 @@
 body {
   background-color: #ab9353;
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/9d/d3/2a/9dd32abd4e5185c1b102ce2dcfd723d0--ancient-rome-ancient-greece.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: cover;
 }
 
 .creatures {
