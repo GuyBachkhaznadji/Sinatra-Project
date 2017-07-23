@@ -470,6 +470,22 @@ body {
   font-family: 'Cinzel', serif;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+}
+
+a:visited {
+  text-decoration: none;
+  color: white;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+}
+
 h2 {
   color: white;
   margin: 15px;
@@ -486,7 +502,7 @@ h3 {
   overflow: hidden;
   /*background-color: black;*/
   /*position: sticky;  */
-  justify-content: space-around;
+  /*justify-content: space-around;*/
   top: 0; 
   width: 100%;
   margin: 15px;
@@ -510,9 +526,32 @@ h3 {
   justify-content: space-between;
 }
 
+.gladiators {
+  display: flex;
+  font-size: 1em;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: space-between;
+}
+
+
 .profile {
   flex: 1;
   min-width: 200px;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+  text-align: center;
+}
+
+.glad-prof{
+  flex: 1;
+  background-image: url(https://cdn.shopify.com/s/files/1/0080/1972/files/hero.png?543);
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+  color: white;
+  min-width: 300px;
   margin: 15px;
   border: 15px;
   padding: 15px;

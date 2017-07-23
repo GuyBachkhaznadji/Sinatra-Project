@@ -1,14 +1,12 @@
 <h2>Resident Gladiators</h2>
-<section>
+<section class="gladiators">
  <% @gladiators.each do |gladiator| %>
-  <article>
-    <p>ID: <%=gladiator.id%></p>
-    <p>Gladiator: <%=gladiator.name%></p>
+  <article class="profile glad-prof">
+    <h3><%=gladiator.name%></h3>
     <h3>Fighting:</h3>
       <% gladiator.creatures.each do |creature| %>
       <p><%=creature.name%></p>
       <% end %>
-    <hr/>
   </article>
   <% end %>
 </section>
