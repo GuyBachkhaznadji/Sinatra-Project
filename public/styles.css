@@ -18,3 +18,17 @@ body {
   padding: 15px;
   text-align: center;
 }
+
+.dragon {
+  background-color: #720E07;
+  color: white;
+}
+
+.lion {
+  background-color: #E3B505;
+}
+
+.bear {
+  background-color: #723500;
+  color: white;
+}
