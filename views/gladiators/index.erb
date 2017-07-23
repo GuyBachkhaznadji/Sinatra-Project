@@ -1,5 +1,9 @@
 <section class="lower-title">
   <h2>Resident Gladiators</h2>
+  
+</section >
+<section class="lower-title">
+  <a class="new" href="/gladiators/new">Add Gladiator</a>
 </section>
 
 <section class="gladiators">
@@ -7,9 +11,12 @@
   <article class="profile glad-prof">
     <h3><%=gladiator.name%></h3>
     <h3>Fighting:</h3>
-      <% gladiator.creatures.each do |creature| %>
+    <% gladiator.creatures.each do |creature| %>
       <p><%=creature.name%></p>
-      <% end %>
+    <% end %>
+    <hr/>
+    <a href="/gladiators/<%=gladiator.id%>/edit">Edit</a>
+    <a href="/creatures/<%=gladiator.id%>/destroy">Delete</a>  
   </article>
   <% end %>
 </section>

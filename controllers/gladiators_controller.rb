@@ -26,7 +26,7 @@ end
 #EDIT
 get '/gladiators/:id/edit' do
   @id = params['id']
-  @gladiators = Gladiator.all
+  @gladiator = Gladiator.find(@id.to_i)
   erb(:"gladiators/edit")
 end
 

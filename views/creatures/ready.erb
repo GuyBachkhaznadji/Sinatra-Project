@@ -1,6 +1,22 @@
 <section class="lower-title">
   <h2>Fightable Creatures</h2>
 </section>
+<section class="lower-title">
+  <a class="new" href="/creatures/new">Add Creature</a>
+  <form class="radio" method="get" action="/creatures/filter">
+    <label for="creature-type-field">See All:</label>
+    <% @types.each do |type| %>
+    <input
+    type="radio"
+    name="type"
+    id="creature-type-field"
+    value="<%=type%>"
+    /><%=type%>s
+    <% end %>
+    <input type="submit" value="Filter">
+  </form>
+</section>
+
 
 <section class="creatures">
  <% @creatures.each do |creature| %>
@@ -9,8 +25,8 @@
     <h3><%=creature.name%></h3>
     <p>Type: <%=creature.type%></p>
     <p>Date of Capture: <%=creature.capture_date%></p>
-    <p>Fightable: <%=creature.fight_ready%></p>
     <p>Fighting: <%=creature.gladiator_names%></p>
+    <hr/>
     <a href="/creatures/ready/<%=creature.id%>/edit">Edit</a>
     <a href="/creatures/<%=creature.id%>/destroy">Delete</a>
   </article>

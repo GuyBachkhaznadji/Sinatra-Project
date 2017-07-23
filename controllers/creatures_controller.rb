@@ -14,11 +14,13 @@ end
 
 get '/creatures/ready' do
   @creatures = Creature.all  
+  @types = Creature.types 
   erb(:"creatures/ready")
 end
 
 get '/creatures/not-ready' do
   @creatures = Creature.all
+  @types = Creature.types 
   erb(:"creatures/not_ready")
 end
 
@@ -81,6 +83,7 @@ end
 
 
 get '/creatures/filter' do
+  @types = Creature.types 
   @type = params['type']
   @creatures = Creature.type(@type)
   erb(:"creatures/filter")

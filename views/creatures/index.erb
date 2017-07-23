@@ -1,19 +1,21 @@
 <section class="lower-title">
   <h2>Resident Creatures</h2>
 </section>
-
-<form class="radio" method="get" action="/creatures/filter">
-  <label for="creature-type-field">Creature Types:</label>
-  <% @types.each do |type| %>
-  <input
-  type="radio"
-  name="type"
-  id="creature-type-field"
-  value="<%=type%>"
-  /><%=type%>
-  <% end %>
-  <input type="submit" value="Filter">
-</form>
+<section class="lower-title">
+  <a class="new" href="/creatures/new">Add Creature</a>
+  <form class="radio" method="get" action="/creatures/filter">
+    <label for="creature-type-field">See All:</label>
+    <% @types.each do |type| %>
+    <input
+    type="radio"
+    name="type"
+    id="creature-type-field"
+    value="<%=type%>"
+    /><%=type%>s
+    <% end %>
+    <input type="submit" value="Filter">
+  </form>
+</section>
 
 <section class="creatures">
  <% @creatures.each do |creature| %>
