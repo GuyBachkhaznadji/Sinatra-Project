@@ -468,6 +468,7 @@ body {
   background-position: center; 
   background-size: cover;
   font-family: 'Cinzel', serif;
+  color: white;
 }
 
 a {
@@ -476,6 +477,7 @@ a {
   margin: 15px;
   border: 15px;
   padding: 15px;
+  background-color: black;
 }
 
 a:visited {
@@ -487,22 +489,22 @@ a:visited {
 }
 
 h2 {
-  color: white;
   margin: 15px;
   border: 15px;
   padding: 15px;
 }
 
 h3 {
-  font-size: 1m;
+  /*font-size: 1m;*/
 }
 
 #title-bar {
   display: flex;
   overflow: hidden;
+  flex-direction: row;
   /*background-color: black;*/
   /*position: sticky;  */
-  /*justify-content: space-around;*/
+  justify-content: space-around;
   top: 0; 
   width: 100%;
   margin: 15px;
@@ -511,11 +513,25 @@ h3 {
 }
 
 #title-photo {
-  width: 415px;
+  flex: 1;
+  width: 200px;
   height: auto;  
   align-self: flex-start;
   /*max-width: 300px; 
   max-height: auto;*/
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+}
+
+nav {
+  flex: 3;
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-align: center;
+  align-items: flex-start;
 }
 
 .creatures {
@@ -560,14 +576,13 @@ h3 {
 
 .dragon {
   background-color: #c0392b;
-  color: white;
 }
 
 .lion {
   background-color: #f1c40f;
+  color: black;
 }
 
 .bear {
   background-color: #723500;
-  color: white;
 }
