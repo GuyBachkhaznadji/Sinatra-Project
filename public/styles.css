@@ -462,7 +462,7 @@ template {
 
 body {
   background-color: #ab9353;
-  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/9d/d3/2a/9dd32abd4e5185c1b102ce2dcfd723d0--ancient-rome-ancient-greece.jpg");
+  background-image: url("/images/background_pic.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; 
@@ -599,7 +599,7 @@ nav {
 
 .glad-prof{
   flex: 1;
-  background-image: url(https://cdn.shopify.com/s/files/1/0080/1972/files/hero.png?543);
+  background-image: url("/images/gladiator_background.png");
   background-repeat: no-repeat;
   background-position: center; 
   background-size: cover;
