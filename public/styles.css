@@ -471,21 +471,21 @@ body {
   color: white;
 }
 
-a {
+a:link, a:visited{
+  text-decoration: none;
+  color: white;
+  margin: 15px;
+  border: 15px;
+  padding: 15px;
+}
+
+.nav-button {
   text-decoration: none;
   color: white;
   margin: 15px;
   border: 15px;
   padding: 15px;
   background-color: black;
-}
-
-a:visited {
-  text-decoration: none;
-  color: white;
-  margin: 15px;
-  border: 15px;
-  padding: 15px;
 }
 
 h1 {
@@ -496,6 +496,7 @@ h1 {
 
 h2 {
   margin: 15px;
+  margin-left: 30px;
   border: 15px;
   padding: 15px;
   background-color: black;
@@ -559,9 +560,9 @@ nav {
   align-content: center;
   justify-content: space-around;
 /*  align-items: center;*/
-  margin: 20px;
-  border: 20px;
-  padding: 20px;
+  margin: 10px;
+  border: 10px;
+  padding: 10px;
 }
 
 .gladiators {
@@ -570,9 +571,9 @@ nav {
   flex-flow: row wrap;
   align-content: center;
   justify-content: space-between;
-  margin: 20px;
-  border: 20px;
-  padding: 20px;
+  margin: 10px;
+  border: 10px;
+  padding: 10px;
 }
 
 
@@ -606,6 +607,10 @@ nav {
 .lion {
   background-color: #f1c40f;
   color: black;
+}
+
+.lion a{
+  color: black;black;
 }
 
 .bear {

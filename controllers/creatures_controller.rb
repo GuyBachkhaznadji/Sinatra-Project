@@ -38,6 +38,7 @@ end
 #EDIT
 get '/creatures/:id/edit' do
   @id = params['id']
+  @creature = Creature.find(@id.to_i)
   @gladiators = Gladiator.all
   erb(:"creatures/edit")
 end
@@ -45,6 +46,7 @@ end
 #EDIT READY CREATURES
 get '/creatures/ready/:id/edit' do
   @id = params['id']
+  @creature = Creature.find(@id.to_i)
   @gladiators = Gladiator.all
   erb(:"creatures/ready_edit")
 end
@@ -52,6 +54,7 @@ end
 #EDIT NON READY CREATURES
 get '/creatures/not-ready/:id/edit' do
   @id = params['id']
+  @creature = Creature.find(@id.to_i)
   @gladiators = Gladiator.all
   erb(:"creatures/not_ready_edit")
 end

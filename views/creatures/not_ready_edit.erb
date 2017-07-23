@@ -4,6 +4,7 @@
   type="text"
   name="name"
   id="name-field"
+  value="<%=@creature.name%>"
   />
 
   <label for="capture-date-field">Capture Date:</label>
@@ -11,6 +12,7 @@
   type="date"
   name="capture_date"
   id="capture-date-field"
+  value="<%=@creature.capture_date%>"
   />
 
   <label for="fightable-field">Fightable:</label>
@@ -25,6 +27,7 @@
     name="fightable"
     id="fightable-field"
     value="f"
+    checked
     />Not Ready
   <input type="submit" value="Update Creature">
 </form>
