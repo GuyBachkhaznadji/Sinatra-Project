@@ -1,5 +1,5 @@
 body {
-  background-color: #FFC44A;
+  background-color: #ab9353;
 }
 
 .creatures {
@@ -20,12 +20,12 @@ body {
 }
 
 .dragon {
-  background-color: #720E07;
+  background-color: #c0392b;
   color: white;
 }
 
 .lion {
-  background-color: #E3B505;
+  background-color: #f1c40f;
 }
 
 .bear {
