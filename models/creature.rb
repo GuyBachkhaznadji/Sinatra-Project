@@ -1,26 +1,35 @@
 require_relative('../db/sql_runner.rb')
+require_relative('./creature_type.rb')
 
 class Creature
 
   attr_accessor(:gladiator_id, :name, :capture_date, :fightable, :type, :type_id, :level, :exp, :max_health, :current_health, :attack, :defence, :speed)
   attr_reader(:id)
 
-  def initialize(details, creature_type)
+  def initialize(details)
     true_false = {'t' => true, 'f' => false}
     @id = details['id'].to_i if details['id'].to_i
     @name = details['name']
-    @type = details['type']
-    @type_id = creature_type.id.to_i
     @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
     @gladiator_id = details['gladiator_id'].to_i
     @level = details['level'].to_i
     @exp = details['exp'].to_i
+    @type = details['type']
+    creature_type = self.get_creature_type
+    @type_id = creature_type.id.to_i
     @max_health = creature_type.starting_health.to_i
     @current_health = @max_health
     @attack = creature_type.starting_attack.to_i
     @defence = creature_type.starting_defence.to_i
     @speed = creature_type.starting_speed.to_i
+  end
+
+  def get_creature_type()
+    sql = "SELECT * FROM creature_types
+    WHERE $1 = name;"
+    values = [@type]
+    return CreatureType.map_items(sql, values)[0]
   end
 
   def save()

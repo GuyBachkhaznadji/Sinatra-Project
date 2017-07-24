@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require_relative('./creature_type.rb')
 
 class CreatureType
 

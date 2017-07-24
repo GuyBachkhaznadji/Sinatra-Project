@@ -1,17 +1,18 @@
 require_relative('../db/sql_runner.rb')
-require_relative('./creature_type')
 
 class Gladiator
 
   attr_accessor(:name, :type_id, :level, :exp, :max_health, :current_health, :attack, :defence, :speed)
   attr_reader(:id)
 
-  def initialize(details, creature_type)
+  def initialize(details)
     @id = details['id'].to_i
     @name = details['name']
-    @type_id = creature_type.id.to_i
+    @type = "Gladiator"
     @level = details['level'].to_i
     @exp = details['exp'].to_i
+    creature_type = self.get_creature_type
+    @type_id = creature_type.id.to_i
     @max_health = creature_type.starting_health.to_i
     @current_health = @max_health
     @attack = creature_type.starting_attack.to_i
@@ -19,13 +20,20 @@ class Gladiator
     @speed = creature_type.starting_speed.to_i
   end
 
+  def get_creature_type()
+    sql = "SELECT * FROM creature_types
+    WHERE $1 = name;"
+    values = [@type]
+    return CreatureType.map_items(sql, values)[0]
+  end
+
   def save()
     sql = "INSERT INTO gladiators
-    (name, type_id, level, exp, max_health, current_health, attack, defence, speed)
+    (name)
     VALUES 
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    ($1)
     RETURNING id;"
-    values = [@name, @type_id, @level, @exp, @max_health, @current_health, @attack, @defence, @speed]
+    values = [@name]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -52,20 +60,6 @@ class Gladiator
     return Creature.map_items(sql, values)
   end
 
-  def get_creature_type
-    sql = "SELECT * FROM creature_types
-    WHERE $1 = id;"
-    values = [@type_id]
-    return CreatureType.map_items(sql, values)[0]
-  end
-
-  def find_creature_type(type_id)
-    sql = "SELECT * FROM creature_types
-    WHERE $1 = id;"
-    values = [type_id]
-    return CreatureType.map_items(sql, values)[0]
-  end
-
   def self.all()
     sql = "SELECT * FROM gladiators;"
     values = nil
@@ -74,9 +68,7 @@ class Gladiator
 
   def self.map_items(sql, values)
     gladiators_hash = SqlRunner.run(sql, values)
-    type_id = gladiators_hash[0]['type_id'].to_i
-    creature_type = self.find_creature_type(type_id)
-    result = gladiators_hash.map { |gladiator| Gladiator.new(gladiator, creature_type)}
+    result = gladiators_hash.map { |gladiator| Gladiator.new(gladiator)}
     return result
   end
 
