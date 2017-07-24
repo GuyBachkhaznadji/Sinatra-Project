@@ -104,13 +104,13 @@ class Creature
     return creature
   end
 
-  def self.types
+  def self.all_types
     creatures = self.all
     types = creatures.map { |creature| creature.type}
     return types.uniq!
   end
 
-  def self.type(type)
+  def self.get_type(type)
     if type == "Creature"
       sql = "SELECT * FROM creatures;"
       values = nil
@@ -129,7 +129,13 @@ class Creature
     if type == nil && ready == nil
       self.all
     elsif ready == nil
-      self.type(type)
+      self.get_type(type)
+    elsif ((type == "Creature" && ready == 't') || (type == "Creature" && ready == 'f'))
+      sql = "SELECT * FROM creatures
+      WHERE fightable = $1;"
+      values = [ready]
+      creatures = self.map_items(sql, values)
+      return creatures
     elsif ready == 't' || ready == 'f'
       sql = "SELECT * FROM creatures
       WHERE type = $1 AND fightable = $2;"
