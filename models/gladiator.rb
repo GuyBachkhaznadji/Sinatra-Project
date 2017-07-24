@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require_relative('./creature_type')
 
 class Gladiator
 
@@ -20,11 +21,11 @@ class Gladiator
 
   def save()
     sql = "INSERT INTO gladiators
-    (name)
+    (name, type_id, level, exp, max_health, current_health, attack, defence, speed)
     VALUES 
-    ($1)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING id;"
-    values = [@name]
+    values = [@name, @type_id, @level, @exp, @max_health, @current_health, @attack, @defence, @speed]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -51,8 +52,18 @@ class Gladiator
     return Creature.map_items(sql, values)
   end
 
-  def type_id
-    
+  def get_creature_type
+    sql = "SELECT * FROM creature_types
+    WHERE $1 = id;"
+    values = [@type_id]
+    return CreatureType.map_items(sql, values)[0]
+  end
+
+  def find_creature_type(type_id)
+    sql = "SELECT * FROM creature_types
+    WHERE $1 = id;"
+    values = [type_id]
+    return CreatureType.map_items(sql, values)[0]
   end
 
   def self.all()
@@ -63,7 +74,9 @@ class Gladiator
 
   def self.map_items(sql, values)
     gladiators_hash = SqlRunner.run(sql, values)
-    result = gladiators_hash.map { |gladiator| Gladiator.new(gladiator)}
+    type_id = gladiators_hash[0]['type_id'].to_i
+    creature_type = self.find_creature_type(type_id)
+    result = gladiators_hash.map { |gladiator| Gladiator.new(gladiator, creature_type)}
     return result
   end
 

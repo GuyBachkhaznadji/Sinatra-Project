@@ -42,3 +42,6 @@ creature4.update
 
 gladiator3 = Gladiator.new({'name' => "Anthony Digitius"}, creature_type4)
 gladiator3.save
+  
+p gladiator3.get_creature_type
+p gladiator3

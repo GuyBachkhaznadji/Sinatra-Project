@@ -43,11 +43,17 @@ class CreatureType
     values = [@id]
     SqlRunner.run(sql, values)
   end
-  
+
   def self.delete_all()
     sql = "DELETE FROM creature_types"
     values = nil
     SqlRunner.run(sql, values)
+  end
+
+  def self.map_items(sql, values)
+    creatures_type_hash = SqlRunner.run(sql, values)
+    result = creatures_type_hash.map { |creature_type| CreatureType.new(creature_type)}
+    return result
   end
 
 end
