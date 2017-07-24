@@ -1,5 +1,5 @@
 <section class="lower-title">
-  <h2>Resident <%=@type%>s</h2>
+  <h2><%= @type ? "Resident #{@type}s" : "Residents"%></h2>
 </section>
 
 <section class="lower-title">
@@ -36,7 +36,6 @@
 
 <section class="creatures">
 <% @creatures.each do |creature| %>
-  <% if @ready == 't' && creature.fightable %>
       <article class="profile <%=creature.type.downcase%>">
         <h3><%=creature.name%></h3>
         <p>Type: <%=creature.type%></p>
@@ -47,34 +46,5 @@
         <a href="/creatures/<%=creature.id%>/edit">Edit</a>
         <a href="/creatures/<%=creature.id%>/destroy">Delete</a>
       </article>
-    <% end %>
-  <% end %>
-  <% @creatures.each do |creature| %>
-  <% if @ready == 'f' && creature.fightable == false %>
-      <article class="profile <%=creature.type.downcase%>">
-        <h3><%=creature.name%></h3>
-        <p>Type: <%=creature.type%></p>
-        <p>Date of Capture: <%=creature.capture_date%></p>
-        <p>Fightable: <%=creature.fight_ready%></p>
-        <p>Fighting: <%=creature.gladiator_names%></p>
-        <hr/>
-        <a href="/creatures/<%=creature.id%>/edit">Edit</a>
-        <a href="/creatures/<%=creature.id%>/destroy">Delete</a>
-      </article>
-    <% end %>
-  <% end %>
-  <% @creatures.each do |creature| %>
-  <% if @ready == nil %>
-      <article class="profile <%=creature.type.downcase%>">
-        <h3><%=creature.name%></h3>
-        <p>Type: <%=creature.type%></p>
-        <p>Date of Capture: <%=creature.capture_date%></p>
-        <p>Fightable: <%=creature.fight_ready%></p>
-        <p>Fighting: <%=creature.gladiator_names%></p>
-        <hr/>
-        <a href="/creatures/<%=creature.id%>/edit">Edit</a>
-        <a href="/creatures/<%=creature.id%>/destroy">Delete</a>
-      </article>
-    <% end %>
   <% end %>
 </section>

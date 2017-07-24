@@ -2,23 +2,17 @@ require( 'sinatra' )
 require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/creature.rb' )
 require_relative( '../models/gladiator.rb' )
+require('pry')
 
 also_reload( '../models/*.rb') if development?
 
 #INDEX / SHOW ALL
 get '/creatures' do
   @types = Creature.types 
-  @ready = nil
-  if params['ready']
-    @ready = params['ready']
-  end
-  if params['type']
-    @type = params['type']
-    @creatures = Creature.type(@type)
-  else
-    @type = "Creature"
-    @creatures = Creature.type(@type)
-  end
+  @type = params['type']
+  @ready = params['ready']
+  # binding.pry
+  @creatures = Creature.filter_find(@type, @ready)
   erb(:"creatures/index")
 end
 
