@@ -18,10 +18,10 @@ creature_type3.save
 creature_type4 = CreatureType.new({'name' => "Gladiator", "starting_health" => 7, "starting_attack" => 2, "starting_defence" => 1, "starting_speed" => 2 })
 creature_type4.save
 
-gladiator1 = Gladiator.new({'name' => "Tiberius Maximus"})
+gladiator1 = Gladiator.new({'name' => "Tiberius Maximus", 'level' => 1, "exp" => 0})
 gladiator1.save
 
-gladiator2 = Gladiator.new({'name' => "Atlas Nero"})
+gladiator2 = Gladiator.new({'name' => "Atlas Nero", 'level' => 1, "exp" => 0})
 gladiator2.save
 
 creature2 = Creature.new({'name' => "Smaug, The Terrible", 'type' => "Dragon", 'capture_date' => "15/10/0500", 'fightable' => 'f', 'level' => 1, "exp" => 0})
@@ -40,9 +40,11 @@ creature4 = Creature.new({'name' => "Ursa, The Tall",'type' => "Bear", 'capture_
 creature4.save
 creature4.update
 
-gladiator3 = Gladiator.new({'name' => "Anthony Digitius"})
+gladiator3 = Gladiator.new({'name' => "Anthony Digitius", 'level' => 1, "exp" => 0})
 gladiator3.save
   
 # # p gladiator3.get_creature_type
 # p gladiator3
 # p creature4
+# p Creature.all
+# p Creature.all_types

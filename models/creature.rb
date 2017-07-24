@@ -132,7 +132,7 @@ class Creature
   def self.all_types
     creatures = self.all
     types = creatures.map { |creature| creature.type}
-    return types.uniq!
+    return types.uniq
   end
 
   def self.get_type(type)

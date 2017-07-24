@@ -7,6 +7,20 @@
     id="name-field"
     value="<%=@creature.name%>"
     />
+    <label for="level-field">Level:</label>
+    <input
+    type="number"
+    name="level"
+    id="level-field"
+    value="<%=@creature.level%>"
+    />
+    <label for="exp-field">Experience:</label>
+    <input
+    type="number"
+    name="exp"
+    id="exp-field"
+    value="<%=@creature.exp%>"
+    />
 
     <label for="capture-date-field">Capture Date:</label>
     <input
@@ -17,7 +31,7 @@
     />
     <label for="types-field">Type</label>
     <ul>
-      <% @types.each do |type| %>
+      <% @all_types.each do |type| %>
       <li><%=type%>
         <input
         type="radio"

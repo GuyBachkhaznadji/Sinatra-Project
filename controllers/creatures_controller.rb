@@ -8,7 +8,7 @@ also_reload( '../models/*.rb') if development?
 
 #INDEX / SHOW ALL
 get '/creatures' do
-  @types = Creature.all_types 
+  @all_types = Creature.all_types 
   @type = params['type']
   @ready = params['ready']
   @creatures = Creature.filter_find(@type, @ready)
@@ -18,6 +18,7 @@ end
 #NEW
 get '/creatures/new' do
   @gladiators = Gladiator.all
+  @all_types = Creature.all_types 
   erb(:"creatures/new")
 end
 
@@ -31,7 +32,7 @@ end
 #EDIT
 get '/creatures/:id/edit' do
   @id = params['id']
-  @types = Creature.types
+  @all_types = Creature.all_types 
   @creature = Creature.find(@id.to_i)
   @gladiators = Gladiator.all
   erb(:"creatures/edit")

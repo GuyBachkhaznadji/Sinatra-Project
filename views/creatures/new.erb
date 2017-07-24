@@ -12,7 +12,20 @@
     type="date"
     name="capture_date"
     id="capture-date-field"
-    />   
+    />  
+    <label for="types-field">Type</label>
+    <ul>
+      <% @all_types.each do |type| %>
+      <li><%=type%>
+        <input
+        type="radio"
+        name="type"
+        id="type-field"
+        value="<%=type%>"
+        />
+      </li>
+      <% end %>
+    </ul> 
     <ul>
       <label for="fightable-field">Ready to Fight?</label>
       <li>Ready

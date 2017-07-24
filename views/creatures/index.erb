@@ -11,8 +11,8 @@
       <label for="creature-type-field">Filter:</label>
         <select name="type" id="creature-type-field">
           <option value="Creature">All</option>
-          <% @types.each do |type| %>
-          <option value="<%=type%>"><%=type%>s</option>
+          <% @all_types.each do |type| %>
+            <option value="<%=type%>"><%=type%>s</option>
           <% end %>
         </select>
 
@@ -40,6 +40,7 @@
     <article class="profile <%=creature.type.downcase%>">
       <h3><%=creature.name%></h3>
       <p>Type: <%=creature.type%></p>
+      <p>Level: <%=creature.level%></p>
       <p>Date of Capture: <%=creature.capture_date%></p>
       <p>Fightable: <%=creature.fight_ready%></p>
       <p>Fighting: <%=creature.gladiator_names%></p>
