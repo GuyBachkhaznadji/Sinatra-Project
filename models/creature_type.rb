@@ -43,5 +43,11 @@ class CreatureType
     values = [@id]
     SqlRunner.run(sql, values)
   end
+  
+  def self.delete_all()
+    sql = "DELETE FROM creature_types"
+    values = nil
+    SqlRunner.run(sql, values)
+  end
 
 end
