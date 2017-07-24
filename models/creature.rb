@@ -13,8 +13,8 @@ class Creature
     @capture_date = details['capture_date']
     @fightable = true_false[details['fightable']]
     @gladiator_id = details['gladiator_id'].to_i
-    @level = details['level'].to_i
-    @exp = details['exp'].to_i
+    @level = details['level'].to_i ? details['level'].to_i : 1
+    @exp = details['exp'].to_i ? details['exp'].to_i : 0
     @type = details['type']
     creature_type = self.get_creature_type
     @type_id = creature_type.id.to_i
@@ -34,11 +34,11 @@ class Creature
 
   def save()
     sql = "INSERT INTO creatures
-    (name, capture_date, fightable, type)
+    (name, capture_date, fightable, type, level, exp, type_id, max_health, current_health, attack, defence, speed)
     VALUES 
-    ($1, $2, $3, $4)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
     RETURNING id;"
-    values = [@name, @capture_date, @fightable, @type]
+    values = [@name, @capture_date, @fightable, @type, @level, @exp, @type_id, @max_health, @current_health, @attack, @defence, @speed]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -48,9 +48,17 @@ class Creature
     name = $1, 
     capture_date = $2, 
     fightable = $3,
-    type = $4
-    WHERE id = $5;"
-    values1 = [@name, @capture_date, @fightable, @type, @id]
+    type = $4,
+    level = $5,
+    exp = $6,
+    type_id = $7,
+    max_health = $8,
+    current_health = $9,
+    attack = $10,
+    defence = $11,
+    speed = $12
+    WHERE id = $13;"
+    values1 = [@name, @capture_date, @fightable, @type, @level, @exp, @type_id, @max_health, @current_health, @attack, @defence, @speed, @id]
     SqlRunner.run(sql1, values1)
     
     sql2 = "UPDATE creatures

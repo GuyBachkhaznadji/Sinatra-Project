@@ -2,15 +2,15 @@ require_relative('../db/sql_runner.rb')
 
 class Gladiator
 
-  attr_accessor(:name, :type_id, :level, :exp, :max_health, :current_health, :attack, :defence, :speed)
+  attr_accessor(:name, :type, :type_id, :level, :exp, :max_health, :current_health, :attack, :defence, :speed)
   attr_reader(:id)
 
   def initialize(details)
-    @id = details['id'].to_i
+    @id = details['id'].to_i if details['id'].to_i 
     @name = details['name']
     @type = "Gladiator"
-    @level = details['level'].to_i
-    @exp = details['exp'].to_i
+    @level = details['level'].to_i ? details['level'].to_i : 1
+    @exp = details['exp'].to_i ? details['exp'].to_i : 0
     creature_type = self.get_creature_type
     @type_id = creature_type.id.to_i
     @max_health = creature_type.starting_health.to_i
@@ -29,20 +29,28 @@ class Gladiator
 
   def save()
     sql = "INSERT INTO gladiators
-    (name)
+    (name, level, exp, type_id, max_health, current_health, attack, defence, speed)
     VALUES 
-    ($1)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING id;"
-    values = [@name]
+    values = [@name, @level, @exp, @type_id, @max_health, @current_health, @attack, @defence, @speed]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
   def update()
     sql = "UPDATE gladiators
     SET 
-    name = $1
-    WHERE id = $2;"
-    values = [@name, @id]
+    name = $1,
+    level = $2,
+    exp = $3,
+    type_id = $4,
+    max_health = $5,
+    current_health = $6,
+    attack = $7,
+    defence = $8,
+    speed = $9
+    WHERE id = $10;"
+    values = [@name, @level, @exp, @type_id, @max_health, @current_health, @attack, @defence, @speed, @id]
     SqlRunner.run(sql, values)
   end
 
