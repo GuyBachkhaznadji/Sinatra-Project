@@ -10,6 +10,7 @@
  <% @gladiators.each do |gladiator| %>
   <article class="profile glad-prof">
     <h3><%=gladiator.name%></h3>
+    <p>Level: <%=gladiator.level%></p>
     <h3>Fighting:</h3>
     <% gladiator.creatures.each do |creature| %>
       <p><%=creature.name%></p>
