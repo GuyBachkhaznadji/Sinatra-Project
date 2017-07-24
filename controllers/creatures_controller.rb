@@ -22,12 +22,26 @@ end
 get '/creatures/ready' do
   @creatures = Creature.all  
   @types = Creature.types 
+  if params['type']
+    @type = params['type']
+    @creatures = Creature.type(@type)
+  else
+    @type = "Creature"
+    @creatures = Creature.type(@type)
+  end
   erb(:"creatures/ready")
 end
 
 get '/creatures/not-ready' do
   @creatures = Creature.all
   @types = Creature.types 
+  if params['type']
+    @type = params['type']
+    @creatures = Creature.type(@type)
+  else
+    @type = "Creature"
+    @creatures = Creature.type(@type)
+  end
   erb(:"creatures/not_ready")
 end
 

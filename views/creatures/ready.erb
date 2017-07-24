@@ -3,8 +3,14 @@
 </section>
 <section class="lower-title">
   <a class="new" href="/creatures/new">Add Creature</a>
-  <form class="radio" method="get" action="/creatures/filter">
-    <label for="creature-type-field">See All:</label>
+  <form class="radio" method="get" action="/creatures/ready">
+    <label for="creature-type-field">Filter:</label>
+    <input
+    type="radio"
+    name="type"
+    id="creature-type-field"
+    value="Creature"
+    />All
     <% @types.each do |type| %>
     <input
     type="radio"
