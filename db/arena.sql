@@ -1,15 +1,15 @@
 DROP TABLE IF EXISTS creatures;
 DROP TABLE IF EXISTS gladiators;
--- DROP TABLE IF EXISTS creature_types;
+DROP TABLE IF EXISTS creature_types;
 
--- CREATE TABLE creature_types(
--- id SERIAL4 PRIMARY KEY,
--- name VARCHAR(255) NOT NULL,
--- starting_health INT4 NOT NULL,
--- starting_attack INT4 NOT NULL,
--- starting_defence INT4 NOT NULL,
--- starting_speed INT4 NOT NULL
--- );
+CREATE TABLE creature_types(
+id SERIAL4 PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+starting_health INT4 NOT NULL,
+starting_attack INT4 NOT NULL,
+starting_defence INT4 NOT NULL,
+starting_speed INT4 NOT NULL
+);
 
 
 CREATE TABLE gladiators(
