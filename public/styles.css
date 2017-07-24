@@ -474,6 +474,7 @@ body {
 a:link, a:visited{
   text-decoration: none;
   font-weight: bold;
+  align-self: center;
   border-radius: 25px;
   color: white;
   margin: 15px;
@@ -658,6 +659,19 @@ nav {
 .radio {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  border-radius: 25px;
+  background-color: black;
+  margin: 10px;
+  border: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.filter {
+  display: flex;
+  flex-flow: column wrap;
   align-items: center;
   border-radius: 25px;
   background-color: black;
