@@ -516,7 +516,6 @@ h3 {
   display: flex;
   overflow: hidden;
   flex-direction: row;
-  /*background-color: black;*/
   /*position: sticky;  */
   justify-content: space-around;
   top: 0; 
@@ -546,6 +545,9 @@ nav {
   font-weight: bold;
   text-align: center;
   align-items: flex-start;
+  margin: 5px;
+  border: 5px;
+  padding: 5px;
 }
 
 .lower-title {
@@ -594,12 +596,33 @@ nav {
 .profile {
   flex: 1;
   border-radius: 25px;
-  min-width: 200px;
+  min-width: 225px;
   margin: 20px;
   border: 20px;
   padding: 20px;
   text-align: center;
 }
+
+/*.profile-change {
+  display: flex;
+  flex-direction: row;
+}
+*/
+/*.edit-button {
+  flex: 1; 
+}
+
+.delete-button {
+  flex: 1;  
+}
+
+.edit-button a{ 
+  margin: 5px; 
+}
+
+.delete-button a{
+  margin: 5px;
+}*/
 
 .glad-prof{
   flex: 1;

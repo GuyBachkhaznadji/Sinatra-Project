@@ -15,15 +15,34 @@
     id="capture-date-field"
     value="<%=@creature.capture_date%>"
     />
-
+    <label for="types-field">Type</label>
     <ul>
-      <label for="fightable-field">Ready to Fight?</label>
+      <% @types.each do |type| %>
+      <li><%=type%>
+        <input
+        type="radio"
+        name="type"
+        id="type-field"
+        value="<%=type%>"
+        <% if @creature.type == type%>
+        checked
+        <% end %>
+        />
+      </li>
+      <% end %>
+    </ul>
+    
+    <label for="fightable-field">Ready to Fight?</label>
+    <ul>
       <li>Ready
         <input
         type="radio"
         name="fightable"
         id="fightable-field"
         value="t"
+        <% if @creature.fightable%>
+        checked
+        <% end %>
         />
       </li>
       <li>Not Ready
@@ -32,6 +51,9 @@
           name="fightable"
           id="fightable-field"
           value="f"
+          <% if @creature.fightable == false%>
+          checked
+          <% end %>
           />
         </li>
       </ul>

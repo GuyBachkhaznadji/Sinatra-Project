@@ -61,6 +61,7 @@ end
 #EDIT
 get '/creatures/:id/edit' do
   @id = params['id']
+  @types = Creature.types
   @creature = Creature.find(@id.to_i)
   @gladiators = Gladiator.all
   erb(:"creatures/edit")
