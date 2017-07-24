@@ -125,17 +125,21 @@ class Creature
     end
   end
 
+  def self.get_fightable(ready)
+      sql = "SELECT * FROM creatures
+      WHERE fightable = $1;"
+      values = [ready]
+      creatures = self.map_items(sql, values)
+      return creatures
+  end
+
   def self.filter_find(type, ready)
     if type == nil && ready == nil
       self.all
     elsif ready == nil
       self.get_type(type)
     elsif ((type == "Creature" && ready == 't') || (type == "Creature" && ready == 'f'))
-      sql = "SELECT * FROM creatures
-      WHERE fightable = $1;"
-      values = [ready]
-      creatures = self.map_items(sql, values)
-      return creatures
+     self.get_fightable(ready)
     elsif ready == 't' || ready == 'f'
       sql = "SELECT * FROM creatures
       WHERE type = $1 AND fightable = $2;"
