@@ -35,13 +35,15 @@
           />
         </li>
       </ul>
-    <label for="gladiator-selection">Gladiator: </label>
-    <select name="gladiator_id" id="gladiator-selection">
-      <option value="0">None</option>
-      <% @gladiators.each do |gladiator| %>
-      <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
-      <% end %>
-    </select>
+    <% if @creature.fightable %>
+      <label for="gladiator-selection">Gladiator: </label>
+      <select name="gladiator_id" id="gladiator-selection">
+        <option value="0">None</option>
+        <% @gladiators.each do |gladiator| %>
+        <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
+        <% end %>
+      </select>
+    <% end %>
 
     <input class="button" type="submit" value="Update Creature">
   </form>
