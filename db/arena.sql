@@ -14,31 +14,32 @@ starting_speed INT4 NOT NULL
 
 CREATE TABLE gladiators(
 id SERIAL4 PRIMARY KEY,
-name VARCHAR(255) NOT NULL
--- level INT4 NOT NULL,
--- exp INT4 NOT NULL,
--- current_health INT4 NOT NULL,
--- max_health INT4 NOT NULL,
--- attack INT4 NOT NULL,
--- defence INT4 NOT NULL,
--- speed INT4 NOT NULL
+name VARCHAR(255) NOT NULL,
+type_id INT4 REFERENCES creature_types(id),
+level INT4,
+exp INT4,
+current_health INT4,
+max_health INT4,
+attack INT4,
+defence INT4,
+speed INT4
 );
 
 CREATE TABLE creatures(
 id SERIAL4 PRIMARY KEY,
 name VARCHAR(255) NOT NULL,
 type VARCHAR(255),
--- type_id INT4 REFERENCES creature_types(id),
+type_id INT4 REFERENCES creature_types(id),
 capture_date DATE NOT NULL,
 fightable BOOLEAN NOT NULL,
-gladiator_id INT4 REFERENCES gladiators(id)
--- level INT4 NOT NULL,
--- exp INT4 NOT NULL,
--- current_health INT4 NOT NULL,
--- max_health INT4 NOT NULL,
--- attack INT4 NOT NULL,
--- defence INT4 NOT NULL,
--- speed INT4 NOT NULL
+gladiator_id INT4 REFERENCES gladiators(id),
+level INT4,
+exp INT4,
+current_health INT4,
+max_health INT4,
+attack INT4,
+defence INT4,
+speed INT4
 );
 
 

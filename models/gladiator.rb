@@ -2,12 +2,20 @@ require_relative('../db/sql_runner.rb')
 
 class Gladiator
 
-  attr_accessor(:name)
+  attr_accessor(:name, :type_id, :level, :exp, :max_health, :current_health, :attack, :defence, :speed)
   attr_reader(:id)
 
-  def initialize(details)
+  def initialize(details, creature_type)
     @id = details['id'].to_i
     @name = details['name']
+    @type_id = creature_type.id.to_i
+    @level = details['level'].to_i
+    @exp = details['exp'].to_i
+    @max_health = creature_type.starting_health.to_i
+    @current_health = @max_health
+    @attack = creature_type.starting_attack.to_i
+    @defence = creature_type.starting_defence.to_i
+    @speed = creature_type.starting_speed.to_i
   end
 
   def save()
@@ -41,6 +49,10 @@ class Gladiator
     WHERE $1 = gladiator_id;"
     values = [@id]
     return Creature.map_items(sql, values)
+  end
+
+  def type_id
+    
   end
 
   def self.all()
