@@ -111,11 +111,18 @@ class Creature
   end
 
   def self.type(type)
-    sql = "SELECT * FROM creatures
-    WHERE type = $1"
-    values = [type]
-    creatures = self.map_items(sql, values)
-    return creatures
+    if type == "Creature"
+      sql = "SELECT * FROM creatures;"
+      values = nil
+      creatures = self.map_items(sql, values)
+      return creatures
+    else
+      sql = "SELECT * FROM creatures
+      WHERE type = $1;"
+      values = [type]
+      creatures = self.map_items(sql, values)
+      return creatures
+    end
   end
 
 end

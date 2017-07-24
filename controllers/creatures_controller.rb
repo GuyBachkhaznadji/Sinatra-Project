@@ -9,6 +9,13 @@ also_reload( '../models/*.rb') if development?
 get '/creatures' do
   @creatures = Creature.all
   @types = Creature.types 
+  if params['type']
+    @type = params['type']
+    @creatures = Creature.type(@type)
+  else
+    @type = "Creature"
+    @creatures = Creature.type(@type)
+  end
   erb(:"creatures/index")
 end
 
@@ -82,9 +89,8 @@ post '/creatures/:id/destroy' do
 end
 
 
-get '/creatures/filter' do
-  @types = Creature.types 
-  @type = params['type']
-  @creatures = Creature.type(@type)
-  erb(:"creatures/filter")
-end
+# get '/creatures/filter' do
+#   @types = Creature.types 
+ 
+#   erb(:"creatures/filter")
+# end
