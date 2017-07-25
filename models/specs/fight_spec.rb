@@ -51,10 +51,15 @@ class TestFight < MiniTest::Test
     assert_equal(true, @fight1.level_up?)
   end
 
-  # def test_level_up
-  #   @gladiator1.level_up
-  #   assert_equal(2, @gladiator1.level)
-  # end
+  def test_level_up
+    @fight1.level_up
+    # @gladiator1.level_up
+    assert_equal(2, @fight1.gladiator.level)
+    assert_equal(12, @fight1.gladiator.max_health)
+    assert_equal(4, @fight1.gladiator.attack)
+    assert_equal(3, @fight1.gladiator.defence)
+    assert_equal(5, @fight1.gladiator.speed)
+  end
 
   # def test_attack
     

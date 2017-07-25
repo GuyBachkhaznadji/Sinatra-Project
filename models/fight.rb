@@ -51,4 +51,16 @@ class Fight
     end
   end
 
+  def level_up
+    @gladiator.level += 1
+    @gladiator.max_health += 5
+    @gladiator.attack += 2
+    @gladiator.defence += 2
+    @gladiator.speed += 3
+  end
+
+
+    
+  end
+
 end
