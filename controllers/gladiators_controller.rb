@@ -2,6 +2,7 @@ require( 'sinatra' )
 require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/creature.rb' )
 require_relative( '../models/gladiator.rb' )
+require_relative( '../models/fight.rb' )
 
 also_reload( '../models/*.rb') if development?
 
@@ -55,5 +56,6 @@ end
 get '/gladiators/:id/fight' do
   @gladiator = Gladiator.find(params[:id])
   @fight = Fight.new({'gladiator' => @gladiator, 'creature' => @gladiator.creature})
+  @round = @fight.round
   erb(:"gladiators/fight")
 end

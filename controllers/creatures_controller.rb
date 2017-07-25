@@ -2,6 +2,7 @@ require( 'sinatra' )
 require( 'sinatra/contrib/all' ) if development?
 require_relative( '../models/creature.rb' )
 require_relative( '../models/gladiator.rb' )
+require_relative( '../models/fight.rb' )
 require('pry')
 
 also_reload( '../models/*.rb') if development?

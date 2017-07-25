@@ -1,0 +1,33 @@
+<section class="lower-title">
+  <h2>Fight!</h2>
+</section >
+
+<section class="gladiators">
+  <article class="profile glad-prof">
+    <h3><%=@gladiator.name%></h3>
+    <p>Level: <%=@gladiator.level%></p>
+    <p>HP: <%=@gladiator.current_health%>/<%=@gladiator.max_health%></p>
+    <hr/>  
+  </article>
+  <article class="profile <%=@fight.creature.type.downcase%>">
+    <h3><%=@fight.creature.name%></h3>
+    <p>Type: <%=@fight.creature.type%></p>
+    <p>Level: <%=@fight.creature.level%></p>
+    <p>HP: <%=@fight.creature.current_health%>/<%=@fight.creature.max_health%></p>
+    <hr/>
+  </article>
+</section>
+
+<section class="gladiators">
+  <article class="profile <%=@fight.creature.type.downcase%>">
+    <p>
+        <%= @round %>
+    </p>  
+  </article>
+</section>
+
+<section class="lower-title">
+  <a class="new" href="/gladiators/new">Start Attack Round!</a>
+</section>
+
+
