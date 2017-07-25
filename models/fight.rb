@@ -24,7 +24,7 @@ class Fight
   end
 
   def dead?()
-    if @creature.current_health <= 0 ||  @gladiator.current_health <= 0
+    if @creature.current_health <= 0 || @gladiator.current_health <= 0
       return true
     else
       return false
@@ -40,10 +40,10 @@ class Fight
   end
 
   def win?
-    if @gladiator.current_health <= 0
-      return false
-    elsif @creature.current_health <= 0
+    if  @creature.current_health <= 0
       return true
+    elsif @gladiator.current_health <= 0
+      return false
     end
   end
 
@@ -95,54 +95,51 @@ class Fight
     string = ""
 
     attack1 = attack(first_attacker, second_attacker)
-    # if dead? && win?
-    #   string += "Well done! You have slain #{@creature.name}<br> "
-    #   self.exp_up
-    #   if self.level_up?
-    #     self.level_up
-    #     first_attacker.update
-    #     second_attacker.fightable = false
-    #     second_attacker.gladiator_id = 0
-    #     second_attacker.gladiator_id = 0
-    #     second_attacker.update
-    #     return string += "You levelled up and are now #{@gladiator.level}!<br> "
-    #   end
-    #   string += "I'd recommend getting some rest now.<br>"
-    # elsif dead?
-    #  string += "#{self.get_dead.name} has died!<br>"
-    #  second_attacker.delete
-    #  return string += "Better luck next time<br>"
-    # end
+    if dead? && win?
+      string += "Well done! You have slain #{@creature.name}<br> "
+      self.exp_up
+      if self.level_up?
+        self.level_up
+        first_attacker.update
+        second_attacker.fightable = false
+        second_attacker.gladiator_id = 0
+        second_attacker.update
+        return string += "You levelled up and are now #{@gladiator.level}!<br> "
+      end
+      return string += "I'd recommend getting some rest now.<br>"
+    elsif dead?
+     string += "#{self.get_dead.name} has died!<br>"
+     second_attacker.delete
+     return string += "Better luck next time<br>"
+    end
 
     attack2 = attack(second_attacker, first_attacker)
-    # if dead? && win?
-    #   string += "Well done! You have slain #{@creature.name}<br>"
-    #   self.exp_up
-    #   if self.level_up?
-    #     self.level_up
-    #     first_attacker.update
-    #     second_attacker.fightable = false
-    #     second_attacker.gladiator_id = 0
-    #     second_attacker.gladiator_id = 0
-    #     second_attacker.update
-    #     return string += "You levelled up and are now #{@gladiator.level}!<br>"
-    #   end
-    #   string += "I'd recommend getting some rest now.<br>"
-    # elsif dead?
-    #  string += "#{self.get_dead.name} has died!<br>"
-    #  second_attacker.delete
-    #  return string += "Better luck next time<br>"
-    # end
+    if dead? && win?
+      string += "Well done! You have slain #{@creature.name}<br>"
+      self.exp_up
+      if self.level_up?
+        self.level_up
+        first_attacker.update
+        second_attacker.fightable = false
+        second_attacker.gladiator_id = 0
+        second_attacker.update
+        return string += "You levelled up and are now #{@gladiator.level}!<br>"
+      end
+      return string += "I'd recommend getting some rest now.<br>"
+    elsif dead?
+     string += "#{self.get_dead.name} has died!<br>"
+     first_attacker.gladiator_id = 0
+     second_attacker.delete
+     return string += "Better luck next time<br>"
+    end
 
     if !dead?
       first_attacker.update
-      p second_attacker.update
-      p second_attacker
-      string += "#{first_attacker.name} did #{attack1} damage to #{second_attacker.name}. <br>"
-      string += "#{second_attacker.name} did #{attack2} damage to #{first_attacker.name}. <br>"
-      string += "#{first_attacker.name} has #{first_attacker.current_health} health. <br>"
-     return string += "#{second_attacker.name} has #{second_attacker.current_health} health."
-    end
+      second_attacker.update
+      string += "#{first_attacker.name} did #{attack1}. <br>"
+      string += "#{second_attacker.name} did #{attack2}. <br>"
+      return string += "#{first_attacker.name} has #{first_attacker.current_health} health. <br>"    
+   end
 
   end
 

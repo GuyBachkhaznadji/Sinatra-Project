@@ -15,7 +15,7 @@ creature_type2.save
 creature_type3 = CreatureType.new({'name' => "Bear", "starting_health" => 10, "starting_attack" => 1, "starting_defence" => 1, "starting_speed" => 3 })
 creature_type3.save
 
-creature_type4 = CreatureType.new({'name' => "Gladiator", "starting_health" => 7, "starting_attack" => 2, "starting_defence" => 1, "starting_speed" => 2 })
+creature_type4 = CreatureType.new({'name' => "Gladiator", "starting_health" => 7, "starting_attack" => 5, "starting_defence" => 1, "starting_speed" => 2 })
 creature_type4.save
 
 gladiator1 = Gladiator.new({'name' => "Tiberius Maximus", 'level' => 1, "exp" => 0})
@@ -32,11 +32,11 @@ creature3 = Creature.new({'name' => "Leo, The Loud", 'type' => "Lion", 'capture_
 creature3.save
 creature3.update
 
-creature1 = Creature.new({'name' => "Nembit, The Firestarter", 'type' => "Dragon", 'capture_date' => "5/5/0100", 'fightable' => 't', 'gladiator_id' => gladiator1.id, 'level' => 1, "exp" => 0})
+creature1 = Creature.new({'name' => "Nembit, The Firestarter", 'type' => "Dragon", 'capture_date' => "5/5/0100", 'fightable' => 't', 'level' => 1, "exp" => 0})
 creature1.save
 creature1.update
 
-creature4 = Creature.new({'name' => "Ursa, The Tall",'type' => "Bear", 'capture_date' => "15/10/0235", 'fightable' => 'f', 'level' => 1, "exp" => 0})
+creature4 = Creature.new({'name' => "Ursa, The Tall",'type' => "Bear", 'capture_date' => "15/10/0235", 'fightable' => 'f', 'level' => 1, "exp" => 0, 'gladiator_id' => gladiator1.id})
 creature4.save
 creature4.update
 
