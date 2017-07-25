@@ -24,15 +24,15 @@ class TestFight < MiniTest::Test
     @fight1 = Fight.new({'creature' => @creature1, 'gladiator' => @gladiator1})
   end
 
-  def test_first
-    fighter = @fight1.first
-    assert_equal(@creature1, fighter)
+  def test_attack_order
+    fighter = @fight1.attack_order
+    assert_equal([@creature1, @gladiator1], fighter)
   end
 
-  def test_last
-    fighter = @fight1.last
-    assert_equal(@gladiator1, fighter)
-  end
+  # def test_last
+  #   fighter = @fight1.last
+  #   assert_equal(@gladiator1, fighter)
+  # end
 
   def test_dead?
     @fight1.creature.current_health = 0

@@ -12,25 +12,14 @@ class Fight
     @gladiator = details['gladiator']
   end
 
-  def first()
+  def attack_order()
     if @creature.speed > @gladiator.speed
-      return @creature
+      return [@creature, @gladiator]
     elsif @gladiator.speed > @creature.speed
-      return @gladiator
+      return [@gladiator, @creature]
     elsif @creature.speed == @gladiator.speed
       fighters = [@creature, @gladiator]
-      return fighters.sample
-    end
-  end
-
-  def last()
-    if @creature.speed < @gladiator.speed
-      return @creature
-    elsif @gladiator.speed < @creature.speed
-      return @gladiator
-    elsif @creature.speed == @gladiator.speed
-      fighters = [@creature, @gladiator]
-      return fighters.sample
+      return fighters.shuffle
     end
   end
 
@@ -94,7 +83,7 @@ class Fight
   def round
     first_attacker = self.first
     second_attacker = self.last
-    
+
     
   end
 
