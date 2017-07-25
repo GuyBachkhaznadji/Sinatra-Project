@@ -29,24 +29,31 @@ class TestFight < MiniTest::Test
     assert_equal(@creature1, fighter)
   end
 
-  # def test_win?
-  #   fighter = creature1.level_up?
-  #   assert_equal(true, fighter)
-  # end
+  def test_dead?
+    @fight1.creature.current_health = 0
+    fight = @fight1.dead?
+    assert_equal(true, fight)
+  end
 
-  # def test_exp_up
-  #   gladiator1.exp_up
-  #   assert_equal(1, gladiator1.exp)
-  # end
+  def test_win?
+    @fight1.creature.current_health = 0
+    fight = @fight1.win?
+    assert_equal(true, fight)
+  end
 
-  # def test_level_up?
-  #   fighter = gladiator1.level_up?
-  #   assert_equal(true, fighter)
-  # end
+  def test_exp_up
+    @fight1.exp_up
+    assert_equal(1, @gladiator1.exp)
+  end
+
+  def test_level_up?
+    @fight1.gladiator.exp = 10
+    assert_equal(true, @fight1.level_up?)
+  end
 
   # def test_level_up
-  #   gladiator1.level_up
-  #   assert_equal(2, gladiator1.level)
+  #   @gladiator1.level_up
+  #   assert_equal(2, @gladiator1.level)
   # end
 
   # def test_attack
