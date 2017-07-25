@@ -96,16 +96,24 @@ class Fight
 
     attack1 = attack(first_attacker, second_attacker)
     if dead? && win?
-      string += "Well done! You have slain #{@creature.name}<br> "
+      string += "Well done, you have slain #{@creature.name}!<br> "
       self.exp_up
+      if first_attacker.class == Creature
+        first_attacker.fightable = false
+        first_attacker.gladiator_id = nil
+        first_attacker.update
+      else 
+        second_attacker.fightable = false
+        second_attacker.gladiator_id = nil
+        second_attacker.update
+      end
       if self.level_up?
         self.level_up
-        first_attacker.update
-        second_attacker.fightable = false
-        second_attacker.gladiator_id = 0
         second_attacker.update
         return string += "You levelled up and are now #{@gladiator.level}!<br> "
       end
+
+      second_attacker.update
       return string += "I'd recommend getting some rest now.<br>"
     elsif dead?
      string += "#{self.get_dead.name} has died!<br>"
@@ -115,21 +123,29 @@ class Fight
 
     attack2 = attack(second_attacker, first_attacker)
     if dead? && win?
-      string += "Well done! You have slain #{@creature.name}<br>"
+      string += "Well done, you have slain #{@creature.name}!<br> "
       self.exp_up
+      if first_attacker.class == Creature
+        first_attacker.fightable = false
+        first_attacker.gladiator_id = nil
+        first_attacker.update
+      else 
+        second_attacker.fightable = false
+        second_attacker.gladiator_id = nil
+        second_attacker.update
+      end
       if self.level_up?
         self.level_up
-        first_attacker.update
-        second_attacker.fightable = false
-        second_attacker.gladiator_id = 0
         second_attacker.update
         return string += "You levelled up and are now #{@gladiator.level}!<br>"
       end
+
+      second_attacker.update
       return string += "I'd recommend getting some rest now.<br>"
     elsif dead?
      string += "#{self.get_dead.name} has died!<br>"
-     first_attacker.gladiator_id = 0
-     second_attacker.delete
+     first_attacker.gladiator_id = nil
+     first_attacker.delete
      return string += "Better luck next time<br>"
     end
 
