@@ -2,7 +2,12 @@
   <h2>Fight!</h2>
 </section >
 <section class="lower-title">
+  <% if !@fight.dead? %>
   <a class="new" href="/gladiators/<%=@fight.gladiator.id%>/fight">Another round?</a>
+  <% end %>
+  <% if @fight.dead? %>
+  <a class="new" href="/gladiators">Victory!</a>
+  <% end %>
 </section>
 
 
