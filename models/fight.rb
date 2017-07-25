@@ -59,8 +59,25 @@ class Fight
     @gladiator.speed += 3
   end
 
+  def attack(attacker, attackee)
+    miss_chance = [1,1,1,1,0].sample
+    damage_chance = [-1,0,1].sample
+    crit_chance = [1,1,1,2].sample
 
-    
+    attacker.attack *= miss_chance
+    attacker.attack += damage_chance
+    attacker.attack *= crit_chance
+
+    if attacker.attack == 0
+      damage = 0
+      return "You missed!"
+    elsif attacker.attack > attackee.defence
+      damage = (attacker.attack - attackee.defence)
+    else
+      damage = 1
+    end
+  
+    attackee.current_health -= damage
   end
 
 end
