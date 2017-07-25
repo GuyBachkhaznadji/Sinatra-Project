@@ -31,6 +31,14 @@ class Fight
     end
   end
 
+  def get_dead
+    if @creature.current_health <= 0
+      return @creature
+    elsif @gladiator.current_health <= 0
+      return @gladiator
+    end
+  end
+
   def win?
     if @gladiator.current_health <= 0
       return false
@@ -81,9 +89,12 @@ class Fight
   end
 
   def round
-    first_attacker = self.first
-    second_attacker = self.last
-
+    first_attacker = self.attack_order[0]
+    second_attacker = self.attack_order[1]
+    attack(first_attacker, second_attacker)
+    if dead?
+      
+    end
     
   end
 

@@ -40,6 +40,12 @@ class TestFight < MiniTest::Test
     assert_equal(true, fight)
   end
 
+  def test_get_dead
+    @fight1.creature.current_health = 0
+    dead_fighter = @fight1.get_dead
+    assert_equal(@creature1, dead_fighter)
+  end
+
   def test_win?
     @fight1.creature.current_health = 0
     fight = @fight1.win?
