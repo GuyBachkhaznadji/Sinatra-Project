@@ -49,3 +49,11 @@ post '/gladiators/:id/destroy' do
   gladiator.delete
   redirect '/gladiators'
 end
+
+
+#FIGHT
+get '/gladiators/:id/fight' do
+  @gladiator = Gladiator.find(params[:id])
+  @fight = Fight.new({'gladiator' => @gladiator, 'creature' => @gladiator.creature})
+  erb(:"gladiators/fight")
+end

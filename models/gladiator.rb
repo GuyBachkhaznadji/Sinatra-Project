@@ -68,6 +68,13 @@ class Gladiator
     return Creature.map_items(sql, values)
   end
 
+  def creature()
+    sql = "SELECT * FROM creatures
+    WHERE $1 = gladiator_id;"
+    values = [@id]
+    return Creature.map_items(sql, values)[0]
+  end
+
   def self.all()
     sql = "SELECT * FROM gladiators;"
     values = nil

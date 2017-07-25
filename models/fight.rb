@@ -92,10 +92,33 @@ class Fight
     first_attacker = self.attack_order[0]
     second_attacker = self.attack_order[1]
     attack(first_attacker, second_attacker)
-    if dead?
-      
+    
+    if dead? && win?
+      puts "Well done! You have slain #{@creature.name}"
+      self.exp_up
+      if self.level_up?
+        self.level_up
+        return "You levelled up and are now #{@gladiator.level}!"
+      end
+      return "I'd recommend getting some rest now."
+    elsif dead?
+     puts "#{self.get_dead.name} has died!"
+     return "Better luck next time"
     end
     
+    attack(second_attacker, first_attacker)
+    if dead? && win?
+      puts "Well done! You have slain #{@creature.name}"
+      self.exp_up
+      if self.level_up?
+        self.level_up
+        return "You levelled up and are now #{@gladiator.level}!"
+      end
+      return "I'd recommend getting some rest now."
+    elsif dead?
+     puts "#{self.get_dead.name} has died!"
+     return "Better luck next time"
+    end
   end
 
 end
