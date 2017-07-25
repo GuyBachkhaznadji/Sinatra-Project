@@ -23,6 +23,17 @@ class Fight
     end
   end
 
+  def last()
+    if @creature.speed < @gladiator.speed
+      return @creature
+    elsif @gladiator.speed < @creature.speed
+      return @gladiator
+    elsif @creature.speed == @gladiator.speed
+      fighters = [@creature, @gladiator]
+      return fighters.sample
+    end
+  end
+
   def dead?()
     if @creature.current_health <= 0 ||  @gladiator.current_health <= 0
       return true
@@ -78,6 +89,13 @@ class Fight
     end
   
     attackee.current_health -= damage
+  end
+
+  def round
+    first_attacker = self.first
+    second_attacker = self.last
+    
+    
   end
 
 end

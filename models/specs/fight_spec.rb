@@ -29,6 +29,11 @@ class TestFight < MiniTest::Test
     assert_equal(@creature1, fighter)
   end
 
+  def test_last
+    fighter = @fight1.last
+    assert_equal(@gladiator1, fighter)
+  end
+
   def test_dead?
     @fight1.creature.current_health = 0
     fight = @fight1.dead?
@@ -66,3 +71,4 @@ class TestFight < MiniTest::Test
   # end
 
 end
+
