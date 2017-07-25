@@ -16,7 +16,9 @@
       <p><%=creature.name%></p>
     <% end %>
     <hr/>
+    <% if gladiator.creature %>
     <a href="/gladiators/<%=gladiator.id%>/fight">Fight</a>
+    <% end %>
     <a href="/gladiators/<%=gladiator.id%>/edit">Edit</a>
     <a href="/gladiators/<%=gladiator.id%>/destroy">Delete</a>  
   </article>

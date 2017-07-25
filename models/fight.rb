@@ -92,44 +92,58 @@ class Fight
   def round
     first_attacker = self.attack_order[0]
     second_attacker = self.attack_order[1]
-
     string = ""
 
     attack1 = attack(first_attacker, second_attacker)
-    if dead? && win?
-      string += "Well done! You have slain #{@creature.name}<br> "
-      self.exp_up
-      if self.level_up?
-        self.level_up
-        return string += "You levelled up and are now #{@gladiator.level}!<br> "
-      end
-      string += "I'd recommend getting some rest now.<br>"
-    elsif dead?
-     string += "#{self.get_dead.name} has died!<br>"
-     return string += "Better luck next time<br>"
-    end
+    # if dead? && win?
+    #   string += "Well done! You have slain #{@creature.name}<br> "
+    #   self.exp_up
+    #   if self.level_up?
+    #     self.level_up
+    #     first_attacker.update
+    #     second_attacker.fightable = false
+    #     second_attacker.gladiator_id = 0
+    #     second_attacker.gladiator_id = 0
+    #     second_attacker.update
+    #     return string += "You levelled up and are now #{@gladiator.level}!<br> "
+    #   end
+    #   string += "I'd recommend getting some rest now.<br>"
+    # elsif dead?
+    #  string += "#{self.get_dead.name} has died!<br>"
+    #  second_attacker.delete
+    #  return string += "Better luck next time<br>"
+    # end
 
     attack2 = attack(second_attacker, first_attacker)
-    if dead? && win?
-      string += "Well done! You have slain #{@creature.name}<br>"
-      self.exp_up
-      if self.level_up?
-        self.level_up
-        return string += "You levelled up and are now #{@gladiator.level}!<br>"
-      end
-      string += "I'd recommend getting some rest now.<br>"
-    elsif dead?
-     string += "#{self.get_dead.name} has died!<br>"
-     return string += "Better luck next time<br>"
-    end
-
+    # if dead? && win?
+    #   string += "Well done! You have slain #{@creature.name}<br>"
+    #   self.exp_up
+    #   if self.level_up?
+    #     self.level_up
+    #     first_attacker.update
+    #     second_attacker.fightable = false
+    #     second_attacker.gladiator_id = 0
+    #     second_attacker.gladiator_id = 0
+    #     second_attacker.update
+    #     return string += "You levelled up and are now #{@gladiator.level}!<br>"
+    #   end
+    #   string += "I'd recommend getting some rest now.<br>"
+    # elsif dead?
+    #  string += "#{self.get_dead.name} has died!<br>"
+    #  second_attacker.delete
+    #  return string += "Better luck next time<br>"
+    # end
 
     if !dead?
+      first_attacker.update
+      p second_attacker.update
+      p second_attacker
       string += "#{first_attacker.name} did #{attack1} damage to #{second_attacker.name}. <br>"
       string += "#{second_attacker.name} did #{attack2} damage to #{first_attacker.name}. <br>"
       string += "#{first_attacker.name} has #{first_attacker.current_health} health. <br>"
-      string += "#{second_attacker.name} has #{second_attacker.current_health} health."
+     return string += "#{second_attacker.name} has #{second_attacker.current_health} health."
     end
+
   end
 
 end

@@ -19,10 +19,10 @@ class Creature
     creature_type = self.get_creature_type
     @type_id = creature_type.id.to_i
     @max_health = creature_type.starting_health.to_i
-    @current_health = @max_health
     @attack = creature_type.starting_attack.to_i
     @defence = creature_type.starting_defence.to_i
     @speed = creature_type.starting_speed.to_i
+    @current_health = details['current_health'] ? details['current_health'].to_i : @max_health
   end
 
   def get_creature_type()
