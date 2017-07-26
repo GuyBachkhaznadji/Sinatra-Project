@@ -70,14 +70,13 @@ class Fight
   def attack_phase(attacker, attacked)
     miss_chance = [1,1,1,1,0].sample
     damage_chance = [-1,0,1].sample
-    crit_chance = [1,1,1,2].sample
+    crit_chance = [1,1,1,1,2].sample
 
     attacker.attack *= miss_chance
     attacker.attack += damage_chance
     attacker.attack *= crit_chance
 
     if attacker.attack == 0
-      damage = 0
       return "missed"
     elsif attacker.attack > attacked.defence
       damage = (attacker.attack - attacked.defence)
@@ -118,25 +117,28 @@ class Fight
   end
 
   def half_round(attacker, attacked)
-    damage_message = self.attack_phase(attacker, attacked)
+    damage_message = attack_phase(attacker, attacked)
     screen_message = ""
 
     if win?
-      screen_message += "#{attacker.name} #{damage_message}! <br>"
+      screen_message += "#{@gladiator.name} #{damage_message}! <br>"
       screen_message += "Well done, you have slain #{@creature.name}!<br> "
       self.exp_up
-      self.update_dead_creature(attacker, attacked)
+      @creature.fightable = false
+      @creature.gladiator_id = nil
+      @creature.update      
       if self.can_level_up?
         self.level_up
-        self.update_gladiator(attacker, attacked)
+        @gladiator.update
         return screen_message += "You levelled up and are now #{@gladiator.level}!<br> "
       end
-      self.update_gladiator(attacker, attacked)
+
+      @gladiator.update
       return screen_message += "I'd recommend getting some rest now.<br>"
     elsif anyone_dead?
-     screen_message += "#{self.get_dead.name} has died!<br>"
-     self.delete_gladiator(attacker, attacked)
-     return screen_message += "Better luck next time<br>"
+     screen_message += "#{@gladiator.name} has died!<br>"
+     @gladiator.delete
+     return screen_message += "Better luck next time<br>" 
     end
 
     if !anyone_dead?
@@ -144,16 +146,22 @@ class Fight
       attacked.update
        return screen_message += "#{attacker.name} #{damage_message}! <br>"
     end
+    return screen_message
   end
 
 
   def round
-    first_attacker = self.attack_order[0]
-    second_attacker = self.attack_order[1]
+    decided_attack_order = self.attack_order
+    first_attacker = decided_attack_order[0]
+    second_attacker = decided_attack_order[1]
     screen_message = ""
 
-    screen_message += first_half_round = half_round(first_attacker, second_attacker)
-    screen_message += second_half_round = half_round(second_attacker, first_attacker)
+    screen_message += self.half_round(first_attacker, second_attacker)
+
+    if screen_message.include?("slain") || screen_message.include?("died")
+      return screen_message
+    end
+    screen_message += self.half_round(second_attacker, first_attacker)
     return screen_message
   end
 
