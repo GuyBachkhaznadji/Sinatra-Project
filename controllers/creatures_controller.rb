@@ -10,9 +10,11 @@ also_reload( '../models/*.rb') if development?
 #INDEX / SHOW ALL
 get '/creatures' do
   @all_types = Creature.all_types 
+  @all_levels = Creature.all_levels
   @type = params['type']
   @ready = params['ready']
-  @creatures = Creature.filter_find(@type, @ready)
+  @level = params['level']
+  @creatures = Creature.filter_find(@type, @ready, @level)
   erb(:"creatures/index")
 end
 

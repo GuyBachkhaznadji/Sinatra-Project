@@ -16,6 +16,14 @@
           <% end %>
         </select>
 
+        <label for="level-field">Level:</label>
+          <select name="level" id="level-field">
+          <option value="0">All</option>
+            <% @all_levels.each do |level| %>
+              <option value="<%=level%>"><%=level%></option>
+            <% end %>
+          </select>
+
       <label for="fightable-field">Fightable:</label>
         <input
           type="radio"
