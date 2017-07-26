@@ -2,13 +2,13 @@
   <h2>Fight!</h2>
 </section >
 <section class="lower-title">
-  <% if !@fight.dead? %>
+  <% if !@fight.anyone_dead? %>
   <a class="new" href="/gladiators/<%=@fight.gladiator.id%>/fight">Another round?</a>
   <% end %>
-  <% if @fight.dead? && @fight.win? %>
+  <% if @fight.anyone_dead? && @fight.win? %>
   <a class="new" href="/gladiators">Victory!</a>
   <% end %>
-  <% if @fight.dead? && !@fight.win? %>
+  <% if @fight.anyone_dead? && !@fight.win? %>
   <a class="new" href="/gladiators">Defeat</a>
   <% end %>
 </section>

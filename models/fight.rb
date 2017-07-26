@@ -23,7 +23,7 @@ class Fight
     end
   end
 
-  def dead?()
+  def anyone_dead?()
     if @creature.current_health <= 0 || @gladiator.current_health <= 0
       return true
     else
@@ -51,7 +51,7 @@ class Fight
     @gladiator.exp += 1
   end
 
-  def level_up?
+  def can_level_up?
     if @gladiator.exp % 10 == 0
       return true
     else
@@ -67,7 +67,7 @@ class Fight
     @gladiator.speed += 3
   end
 
-  def attack(attacker, attackee)
+  def attack_phase(attacker, attacked)
     miss_chance = [1,1,1,1,0].sample
     damage_chance = [-1,0,1].sample
     crit_chance = [1,1,1,2].sample
@@ -78,15 +78,15 @@ class Fight
 
     if attacker.attack == 0
       damage = 0
-      return "You missed!"
-    elsif attacker.attack > attackee.defence
-      damage = (attacker.attack - attackee.defence)
+      return "missed"
+    elsif attacker.attack > attacked.defence
+      damage = (attacker.attack - attacked.defence)
     else
       damage = 1
     end
   
-    attackee.current_health -= damage
-    return damage
+    attacked.current_health -= damage
+    return "did #{damage} damage"
   end
 
   def update_dead_creature(attacker, attacked)
@@ -101,58 +101,60 @@ class Fight
     end
   end
 
+  def update_gladiator(attacker, attacked)
+    if attacker.class == Gladiator
+      attacker.update
+    else 
+      attacked.update
+    end
+  end
+
+  def delete_gladiator(attacker, attacked)
+    if attacker.class == Gladiator
+      attacker.delete
+    else 
+      attacked.update
+    end
+  end
+
+  def half_round(attacker, attacked)
+    damage_message = self.attack_phase(attacker, attacked)
+    screen_message = ""
+
+    if win?
+      screen_message += "#{attacker.name} #{damage_message}! <br>"
+      screen_message += "Well done, you have slain #{@creature.name}!<br> "
+      self.exp_up
+      self.update_dead_creature(attacker, attacked)
+      if self.can_level_up?
+        self.level_up
+        self.update_gladiator(attacker, attacked)
+        return screen_message += "You levelled up and are now #{@gladiator.level}!<br> "
+      end
+      self.update_gladiator(attacker, attacked)
+      return screen_message += "I'd recommend getting some rest now.<br>"
+    elsif anyone_dead?
+     screen_message += "#{self.get_dead.name} has died!<br>"
+     self.delete_gladiator(attacker, attacked)
+     return screen_message += "Better luck next time<br>"
+    end
+
+    if !anyone_dead?
+      attacker.update
+      attacked.update
+       return screen_message += "#{attacker.name} #{damage_message}! <br>"
+    end
+  end
+
+
   def round
     first_attacker = self.attack_order[0]
     second_attacker = self.attack_order[1]
-    string = ""
+    screen_message = ""
 
-    attack1 = attack(first_attacker, second_attacker)
-    if dead? && win?
-      string += "Well done, you have slain #{@creature.name}!<br> "
-      self.exp_up
-      self.update_dead_creature(first_attacker, second_attacker)
-      if self.level_up?
-        self.level_up
-        second_attacker.update
-        return string += "You levelled up and are now #{@gladiator.level}!<br> "
-      end
-
-      second_attacker.update
-      return string += "I'd recommend getting some rest now.<br>"
-    elsif dead?
-     string += "#{self.get_dead.name} has died!<br>"
-     second_attacker.delete
-     return string += "Better luck next time<br>"
-    end
-
-    attack2 = attack(second_attacker, first_attacker)
-    if dead? && win?
-      string += "Well done, you have slain #{@creature.name}!<br> "
-      self.exp_up   
-      self.update_dead_creature(first_attacker, second_attacker)
-      if self.level_up?
-        self.level_up
-        second_attacker.update
-        return string += "You levelled up and are now #{@gladiator.level}!<br>"
-      end
-
-      second_attacker.update
-      return string += "I'd recommend getting some rest now.<br>"
-    elsif dead?
-     string += "#{self.get_dead.name} has died!<br>"
-     first_attacker.gladiator_id = nil
-     first_attacker.delete
-     return string += "Better luck next time<br>"
-    end
-
-    if !dead?
-      first_attacker.update
-      second_attacker.update
-      string += "#{first_attacker.name} did #{attack1}. <br>"
-      string += "#{second_attacker.name} did #{attack2}. <br>"
-      return string += "#{first_attacker.name} has #{first_attacker.current_health} health. <br>"    
-   end
-
+    screen_message += first_half_round = half_round(first_attacker, second_attacker)
+    screen_message += second_half_round = half_round(second_attacker, first_attacker)
+    return screen_message
   end
 
 end
