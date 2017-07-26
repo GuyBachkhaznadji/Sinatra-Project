@@ -18,7 +18,7 @@ class Fight
     elsif @gladiator.speed > @creature.speed
       return [@gladiator, @creature]
     elsif @creature.speed == @gladiator.speed
-      fighters = [@creature, @gladiator]
+       fighters = [@creature, @gladiator]
       return fighters.shuffle
     end
   end
@@ -48,7 +48,7 @@ class Fight
   end
 
   def exp_up
-    @gladiator.exp += 1
+    @gladiator.exp += 5
   end
 
   def can_level_up?
@@ -128,7 +128,7 @@ class Fight
       @creature.gladiator_id = nil
       @creature.update      
       if self.can_level_up?
-        self.level_up
+        @gladiator.level_up
         @gladiator.update
         return screen_message += "You levelled up and are now #{@gladiator.level}!<br> "
       end

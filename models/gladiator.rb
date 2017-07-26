@@ -28,12 +28,24 @@ class Gladiator
     return CreatureType.map_items(sql, values)[0]
   end
 
+  def level_up
+    @level += 1
+    @max_health += 5
+    @attack += 2
+    @defence += 2
+    @speed += 3
+  end
+
   def adjust_stats_by_level
-      @max_health = (5 * @level)
-      @attack = (2 * @level)
-      @defence = (2 * @level)
-      @speed = (3 * @level)
-      @exp = (10 * (@level - 1))
+    levels_to_adjust = (@level - 1)
+    counter = 0
+
+    while counter < levels_to_adjust do
+      self.level_up
+      @level -= 1
+      @exp += 10
+      counter += 1
+    end
   end
 
   def save()
