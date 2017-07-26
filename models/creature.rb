@@ -203,7 +203,7 @@ class Creature
     end
   end
 
-  # def self.filter_find(type, ready)
+  # def self.filter_by_type_ready(type, ready)
   #   if type == nil && ready == nil
   #     self.all
   #   elsif ready == nil
@@ -219,7 +219,31 @@ class Creature
   #   end
   # end
 
-  def self.filter_find(type, ready, level)
+  def self.filter_by_type_ready(type, ready)
+    sql = "SELECT * FROM creatures
+    WHERE type = $1 AND fightable = $2;"
+    values = [type, ready]
+    creatures = self.map_items(sql, values)
+    return creatures
+  end
+
+  def self.filter_by_type_level(type, level)
+    sql = "SELECT * FROM creatures
+    WHERE type = $1 AND level = $2;"
+    values = [type, level]
+    creatures = self.map_items(sql, values)
+    return creatures
+  end
+
+  def self.filter_by_fightable_level(ready, level)
+    sql = "SELECT * FROM creatures
+    WHERE fightable = $1 AND level = $2;"
+    values = [ready, level]
+    creatures = self.map_items(sql, values)
+    return creatures
+  end
+
+  def self.filter_find_by_3(type, ready, level)
     level = level.to_i
     if type == nil && ready == nil && level == 0
       self.all
@@ -228,24 +252,13 @@ class Creature
     elsif ((type == "Creature" && ready == 't' && level == 0) || (type == "Creature" && ready == 'f'  && level == 0))
      self.get_fightable(ready)
     elsif ((type != "Creature" && level == 0 && ready == 't') || (type != "Creature" && ready == 'f' && level == 0))
-      sql = "SELECT * FROM creatures
-      WHERE type = $1 AND fightable = $2;"
-      values = [type, ready]
-      creatures = self.map_items(sql, values)
+      self.filter_by_type_ready(type, ready)
    elsif (type == "Creature" && level != 0 && ready == nil)
       self.get_level(level)
     elsif (type != "Creature" && level != 0 && ready == nil)
-      sql = "SELECT * FROM creatures
-      WHERE type = $1 AND level = $2;"
-      values = [type, level]
-      creatures = self.map_items(sql, values)
-      return creatures
+      self.filter_by_type_level(type, level)
     elsif (type == "Creature" && level != 0 && ready != nil)
-      sql = "SELECT * FROM creatures
-      WHERE fightable = $1 AND level = $2;"
-      values = [ready, level]
-      creatures = self.map_items(sql, values)
-      return creatures
+      self.filter_by_fightable_level(ready, level)
     elsif (type != "Creature" && level != 0 && ready != nil)
       sql = "SELECT * FROM creatures
       WHERE type = $1 AND fightable = $2 AND level = $3;"

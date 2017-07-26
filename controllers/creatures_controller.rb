@@ -14,7 +14,7 @@ get '/creatures' do
   @type = params['type']
   @ready = params['ready']
   @level = params['level']
-  @creatures = Creature.filter_find(@type, @ready, @level)
+  @creatures = Creature.filter_find_by_3(@type, @ready, @level)
   erb(:"creatures/index")
 end
 
