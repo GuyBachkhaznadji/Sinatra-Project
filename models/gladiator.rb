@@ -14,10 +14,11 @@ class Gladiator
     creature_type = self.get_creature_type
     @type_id = creature_type.id.to_i
     @max_health = creature_type.starting_health.to_i
-    @current_health = details['current_health'] ? details['current_health'].to_i : @max_health
     @attack = creature_type.starting_attack.to_i
     @defence = creature_type.starting_defence.to_i
     @speed = creature_type.starting_speed.to_i
+    self.adjust_stats_by_level
+    @current_health = details['current_health'] ? details['current_health'].to_i : @max_health
   end
 
   def get_creature_type()
@@ -25,6 +26,13 @@ class Gladiator
     WHERE $1 = name;"
     values = [@type]
     return CreatureType.map_items(sql, values)[0]
+  end
+
+  def adjust_stats_by_level
+      @max_health += (5 * @level)
+      @attack += (2 * @level)
+      @defence += (2 * @level)
+      @speed += (3 * @level)
   end
 
   def save()
