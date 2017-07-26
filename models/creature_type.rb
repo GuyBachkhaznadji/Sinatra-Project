@@ -38,6 +38,19 @@ class CreatureType
     SqlRunner.run(sql, values)
   end
 
+  def self.all()
+    sql = "SELECT * FROM creature_types;"
+    values = nil
+    self.map_items(sql, values)
+  end
+
+  def self.all_type_names()
+    all_types = self.all
+    names = all_types.map { |type| type.name}
+    names.delete("Gladiator")
+    return names
+  end
+
   def delete()
     sql = "DELETE FROM creature_types
     WHERE id = $1;"
