@@ -89,6 +89,18 @@ class Fight
     return damage
   end
 
+  def update_dead_creature(attacker, attacked)
+    if attacker.class == Creature
+      attacker.fightable = false
+      attacker.gladiator_id = nil
+      attacker.update
+    else 
+      attacked.fightable = false
+      attacked.gladiator_id = nil
+      attacked.update
+    end
+  end
+
   def round
     first_attacker = self.attack_order[0]
     second_attacker = self.attack_order[1]
@@ -98,15 +110,7 @@ class Fight
     if dead? && win?
       string += "Well done, you have slain #{@creature.name}!<br> "
       self.exp_up
-      if first_attacker.class == Creature
-        first_attacker.fightable = false
-        first_attacker.gladiator_id = nil
-        first_attacker.update
-      else 
-        second_attacker.fightable = false
-        second_attacker.gladiator_id = nil
-        second_attacker.update
-      end
+      self.update_dead_creature(first_attacker, second_attacker)
       if self.level_up?
         self.level_up
         second_attacker.update
@@ -124,16 +128,8 @@ class Fight
     attack2 = attack(second_attacker, first_attacker)
     if dead? && win?
       string += "Well done, you have slain #{@creature.name}!<br> "
-      self.exp_up
-      if first_attacker.class == Creature
-        first_attacker.fightable = false
-        first_attacker.gladiator_id = nil
-        first_attacker.update
-      else 
-        second_attacker.fightable = false
-        second_attacker.gladiator_id = nil
-        second_attacker.update
-      end
+      self.exp_up   
+      self.update_dead_creature(first_attacker, second_attacker)
       if self.level_up?
         self.level_up
         second_attacker.update
