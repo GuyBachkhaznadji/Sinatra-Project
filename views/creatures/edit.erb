@@ -6,6 +6,7 @@
     name="name"
     id="name-field"
     value="<%=@creature.name%>"
+    required
     />
     <label for="level-field">Level:</label>
     <input
@@ -13,6 +14,7 @@
     name="level"
     id="level-field"
     value="<%=@creature.level%>"
+    required
     />
     <label for="exp-field">Experience:</label>
     <input
@@ -20,6 +22,7 @@
     name="exp"
     id="exp-field"
     value="<%=@creature.exp%>"
+    required
     />
 
     <label for="capture-date-field">Capture Date:</label>
@@ -28,6 +31,7 @@
     name="capture_date"
     id="capture-date-field"
     value="<%=@creature.capture_date%>"
+    required
     />
     <label for="types-field">Type</label>
     <ul>
@@ -39,6 +43,7 @@
         id="type-field"
         value="<%=type%>"
         <% if @creature.type == type%>
+        required
         checked
         <% end %>
         />
@@ -54,6 +59,7 @@
         name="fightable"
         id="fightable-field"
         value="t"
+        required
         <% if @creature.fightable%>
         checked
         <% end %>
@@ -74,7 +80,7 @@
     <% if @creature.fightable %>
       <label for="gladiator-selection">Gladiator: </label>
       <select name="gladiator_id" id="gladiator-selection">
-        <option value="0">None</option>
+        <option>None</option>
         <% @gladiators.each do |gladiator| %>
         <option value="<%=gladiator.id%>"><%=gladiator.name%></option>
         <% end %>

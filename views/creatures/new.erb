@@ -5,6 +5,7 @@
     type="text"
     name="name"
     id="name-field"
+    required
     />
     <label for="level-field">Level:</label>
     <input
@@ -12,6 +13,7 @@
     name="level"
     id="level-field"
     value="1"
+    required
     />
     <label for="capture-date-field">Capture Date:</label>
     <input
@@ -19,6 +21,7 @@
     name="capture_date"
     id="capture-date-field"
     value="<%=Date.today%>"
+    required
     />  
     <label for="types-field">Type</label>
     <ul>
@@ -29,6 +32,7 @@
         name="type"
         id="type-field"
         value="<%=type%>"
+        required
         />
       </li>
       <% end %>
@@ -41,6 +45,7 @@
         name="fightable"
         id="fightable-field"
         value="t"
+        required
         />
       </li>
       <li>Not Ready
