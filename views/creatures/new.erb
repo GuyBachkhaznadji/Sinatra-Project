@@ -6,12 +6,19 @@
     name="name"
     id="name-field"
     />
-
+    <label for="level-field">Level:</label>
+    <input
+    type="number"
+    name="level"
+    id="level-field"
+    value="1"
+    />
     <label for="capture-date-field">Capture Date:</label>
     <input
     type="date"
     name="capture_date"
     id="capture-date-field"
+    value="<%=Date.today%>"
     />  
     <label for="types-field">Type</label>
     <ul>

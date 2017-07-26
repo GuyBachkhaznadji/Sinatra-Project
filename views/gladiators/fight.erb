@@ -18,21 +18,21 @@
   <article class="profile glad-prof">
     <h3><%=@gladiator.name%></h3>
     <p>Level: <%=@fight.gladiator.level%></p>
-    <p>HP: <%=@fight.gladiator.current_health%>/<%=@gladiator.max_health%></p>
+    <p>Health: <%=@fight.gladiator.current_health%>/<%=@gladiator.max_health%></p>
     <hr/>  
   </article>
   <article class="profile <%=@fight.creature.type.downcase%>">
     <h3><%=@fight.creature.name%></h3>
     <p>Type: <%=@fight.creature.type%></p>
     <p>Level: <%=@fight.creature.level%></p>
-    <p>HP: <%=@fight.creature.current_health%>/<%=@fight.creature.max_health%></p>
+    <p>Health: <%=@fight.creature.current_health%>/<%=@fight.creature.max_health%></p>
     <hr/>
   </article>
 </section>
 
 <section class="gladiators">
   <article class="profile <%=@fight.creature.type.downcase%>">
-    <p><%= @round %></p>  
+    <h3><%= @round %></3>  
   </article>
 </section>
 

@@ -11,16 +11,25 @@
   <article class="profile glad-prof">
     <h3><%=gladiator.name%></h3>
     <p>Level: <%=gladiator.level%></p>
-    <h3>Fighting:</h3>
+    <section class="glad-stats">
+      <p>Health: <%=gladiator.current_health%>/<%=gladiator.max_health%></p>
+      <p>Attack: <%=gladiator.attack%></p>
+      <p>Defence: <%=gladiator.defence%></p>
+      <p>Speed: <%=gladiator.speed%></p>
+    </section>
+    <br>
+    <p>Fighting:</p>
     <% gladiator.creatures.each do |creature| %>
-      <p><%=creature.name%></p>
+      <h3 class="gladiator-creatures"><%=creature.name%></h3>
     <% end %>
     <hr/>
-    <% if gladiator.creature %>
-    <a href="/gladiators/<%=gladiator.id%>/fight">Fight</a>
-    <% end %>
-    <a href="/gladiators/<%=gladiator.id%>/edit">Edit</a>
-    <a href="/gladiators/<%=gladiator.id%>/destroy">Delete</a>  
+    <section class="gladiator-buttons">
+      <% if gladiator.creature %>
+      <a href="/gladiators/<%=gladiator.id%>/fight">Fight</a>
+      <% end %>
+      <a href="/gladiators/<%=gladiator.id%>/edit">Edit</a>
+      <a href="/gladiators/<%=gladiator.id%>/destroy">Delete</a>  
+    </section>
   </article>
   <% end %>
 </section>

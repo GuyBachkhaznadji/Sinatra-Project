@@ -485,7 +485,12 @@ a:link, a:visited{
 .nav-button {
   text-decoration: none;
   color: white;
+  /*background-color: black;*/
+}
+
+.nav-button-bar {
   background-color: black;
+  border-radius: 25px;
 }
 
 h1 {
@@ -505,6 +510,11 @@ h2 {
 
 h3 {
   /*font-size: 1m;*/
+  text-shadow:
+    -1px -1px 0 black,  
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
 }
 
 /*p {
@@ -512,6 +522,8 @@ h3 {
   border: 15px;
   padding: 15px;
 }*/
+
+
 
 #title-bar {
   display: flex;
@@ -639,6 +651,47 @@ nav {
   text-align: center;
 }
 
+.glad-prof p {
+  text-align: left;
+  margin: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-shadow:
+    -1px -1px 0 black,  
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+}
+
+.glad-stats {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.gladiator-buttons {
+  background-color: black;
+  border-radius: 25px;
+}
+
+.gladiator-creatures {
+  /*background-color: black;*/
+  margin: 1px;
+  text-shadow:
+    -1px -1px 0 black,  
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+  /*border-radius: 25px;*/
+}
+
+.gladiator-creatures p {
+  /*background-color: black;*/
+  text-align: center;
+  margin: 1px;
+  /*border-radius: 25px;*/
+}
+
 .dragon {
   background-color: #c0392b;
 }
@@ -646,10 +699,19 @@ nav {
 .lion {
   background-color: #f1c40f;
   color: black;
+
 }
 
 .lion a{
   color: black;
+}
+
+.lion h3{
+  text-shadow:
+    -1px -1px 0 white,  
+    1px -1px 0 white,
+    -1px 1px 0 white,
+    1px 1px 0 white;
 }
 
 .bear {
