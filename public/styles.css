@@ -599,6 +599,7 @@ nav {
   font-size: 1em;
   flex-flow: row wrap;
   align-content: center;
+  align-items: center;
   justify-content: space-between;
   margin: 10px;
   border: 10px;
@@ -696,10 +697,20 @@ nav {
   background-color: #c0392b;
 }
 
+.dragon img{
+  max-width: 200px;
+  height: auto;
+}
+
 .lion {
   background-color: #f1c40f;
   color: black;
 
+}
+
+.lion img{
+  max-width: 200px;
+  height: auto;
 }
 
 .lion a{
@@ -716,6 +727,11 @@ nav {
 
 .bear {
   background-color: #723500;
+}
+
+.bear img{
+  max-width: 200px;
+  height: auto;
 }
 
 .radio {

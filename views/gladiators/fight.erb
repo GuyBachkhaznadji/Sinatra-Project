@@ -16,12 +16,21 @@
 
 <section class="gladiators">
   <article class="profile glad-prof">
+    <img src="https://68.media.tumblr.com/ceb55eb227a2e50d46de08c5f5f4d927/tumblr_n8fhdhqyT71r6sk6wo9_r2_250.gif">
     <h3><%=@gladiator.name%></h3>
     <p>Level: <%=@fight.gladiator.level%></p>
     <p>Health: <%=@fight.gladiator.current_health%>/<%=@gladiator.max_health%></p>
     <hr/>  
   </article>
+
   <article class="profile <%=@fight.creature.type.downcase%>">
+    <% if @fight.creature.type == "Dragon"%>
+    <img class="dragon" src="http://bestanimations.com/Fantasy/Dragons/dragon-animated-gif-40.gif">
+    <% elsif @fight.creature.type == "Lion"%>
+    <img src="http://bestanimations.com/Animals/Mammals/Cats/Lions/animated-lion-gif-19.gif">
+    <% elsif @fight.creature.type == "Bear"%>
+    <img src="https://hydra-media.cursecdn.com/onmyown.gamepedia.com/thumb/e/e8/Bear_Running.gif/400px-Bear_Running.gif?version=a4bc1cb26703ca703dc80b1f959dc1ef">
+    <% end %>
     <h3><%=@fight.creature.name%></h3>
     <p>Type: <%=@fight.creature.type%></p>
     <p>Level: <%=@fight.creature.level%></p>
