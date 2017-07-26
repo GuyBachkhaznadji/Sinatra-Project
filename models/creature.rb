@@ -159,6 +159,12 @@ class Creature
     return types.uniq
   end
 
+  def self.all_levels
+    creatures = self.all
+    creature_levels = creatures.map { |creature| creature.level}
+    return creature_levels.uniq
+  end
+
   def self.get_type(type)
     if type == "Creature"
       sql = "SELECT * FROM creatures;"
