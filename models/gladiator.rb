@@ -96,6 +96,10 @@ class Gladiator
     return Creature.map_items(sql, values)[0]
   end
 
+  def heal
+    @current_health = @max_health
+  end
+
   def self.all()
     sql = "SELECT * FROM gladiators;"
     values = nil

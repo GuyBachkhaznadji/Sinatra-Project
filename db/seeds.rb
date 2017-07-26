@@ -39,8 +39,6 @@ creature3.save
 creature2 = Creature.new({'name' => "Smaug, The Terrible", 'type' => "Dragon", 'capture_date' => "15/10/0500", 'fightable' => 'f', 'level' => 3, "exp" => 0})
 creature2.save
 
-p Creature.all_levels
-
 
 
 

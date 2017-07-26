@@ -53,6 +53,10 @@ class Creature
     end
   end
 
+  def heal
+    @current_health = @max_health
+  end
+
   def check_null(id)
     if id == "None"
       return nil
