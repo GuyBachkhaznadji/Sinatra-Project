@@ -9,8 +9,8 @@ class Gladiator
     @id = details['id'].to_i if details['id'].to_i 
     @name = details['name']
     @type = "Gladiator"
-    @level = details['level'].to_i ? details['level'].to_i : 1
-    @exp = details['exp'].to_i ? details['exp'].to_i : 0
+    @level = details['level'] ? details['level'].to_i : 1
+    @exp = details['exp'] ? details['exp'].to_i : 0
     creature_type = self.get_creature_type
     @type_id = creature_type.id.to_i
     @max_health = creature_type.starting_health.to_i
@@ -29,10 +29,11 @@ class Gladiator
   end
 
   def adjust_stats_by_level
-      @max_health += (5 * @level)
-      @attack += (2 * @level)
-      @defence += (2 * @level)
-      @speed += (3 * @level)
+      @max_health = (5 * @level)
+      @attack = (2 * @level)
+      @defence = (2 * @level)
+      @speed = (3 * @level)
+      @exp = (10 * (@level - 1))
   end
 
   def save()
