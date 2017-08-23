@@ -40,9 +40,6 @@ creature2 = Creature.new({'name' => "Smaug, The Terrible", 'type' => "Dragon", '
 creature2.save
 
 
-
-
-  
 # # p gladiator3.get_creature_type
 # p gladiator3
 # p creature4

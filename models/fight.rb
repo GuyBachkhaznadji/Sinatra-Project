@@ -83,6 +83,11 @@ class Fight
     else
       damage = 1
     end
+
+    def It_should_damage_the_defender_with_an_attack(attacker, attacked)
+    # It should have a 1 in 5 chance of missing
+    # It should have a 1 in 6 chance of doing double damage
+     end
   
     attacked.current_health -= damage
     return "did #{damage} damage"
